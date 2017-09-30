@@ -1,0 +1,28 @@
+{
+  "name": "openlens",
+  "version": "0.0.1",
+  "description": "Open lens beta aplication.",
+  "main": "index.js",
+  "dependencies": {},
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jiyuu-jin/openlens.git"
+  },
+  "keywords": [
+    "augemented",
+    "reality",
+    "data",
+    "data",
+    "anlaysis"
+  ],
+  "author": "Alec Wantoch, ramgopal varma, Zachary Pelkey",
+  "license": "GPL-3.0",
+  "bugs": {
+    "url": "https://github.com/jiyuu-jin/openlens/issues"
+  },
+  "homepage": "https://github.com/jiyuu-jin/openlens#readme"
+}
