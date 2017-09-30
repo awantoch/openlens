@@ -9,7 +9,7 @@ const IndexPage = () =>({
         return(
             <div>
 
-                <center><h1>Suhhhh</h1></center>
+                <center><h1>Open Lens</h1></center>
 
             </div>
         )
