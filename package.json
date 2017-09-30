@@ -3,7 +3,13 @@
   "version": "0.0.1",
   "description": "Open lens beta aplication.",
   "main": "index.js",
-  "dependencies": {},
+  "dependencies": {
+    "hammerjs": "^2.0.8",
+    "materialize-css": "^0.100.2",
+    "react": "^16.0.0",
+    "react-dom": "^16.0.0",
+    "react-router-dom": "^4.2.2"
+  },
   "devDependencies": {},
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
