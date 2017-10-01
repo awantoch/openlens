@@ -41,7 +41,6 @@ class MainLayout extends Component {
 		return(
 		<Router>
 			<div>
-				<Header/>
 
 				<div id="page-content" className="thebackground">
 						<Switch>
