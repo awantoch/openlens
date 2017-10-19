@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>AR Test</title>
+		<meta charset="utf-8">
+		<meta name="viewport" content="user-scalable=no, initial-scale=1">
+		<style>
+			body {
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				position: absolute;
+				top: 0px; width: 100%;
+				color: #ffffff;
+				padding: 5px;
+				font-family:Monospace;
+				font-size:13px;
+				font-weight: bold;
+				text-align:center;
+			}
+
+			a {
+				color: #ff8800;
+			}
+
+			video {
+				position: fixed;
+				top: 0;
+				z-index: -1;
+			}
+		</style>
+	</head>
+	<body>
+
+		<video></video>
+		<div id="container">
+		</div>
+
+		<script>
+			var constraints = { audio: false, video: { facingMode: "environment" } }; 
+
+			navigator.mediaDevices.getUserMedia(constraints)
+			.then(function(mediaStream) {
+			  var video = document.querySelector('video');
+			  video.srcObject = mediaStream;
+			  video.onloadedmetadata = function(e) {
+
+			    video.play();
+			  };
+			})
+			.catch(function(err) { alert(err.name + ": " + err.message); }); // always check for errors at the end.
+		</script>
+
+		<script src="js/three.js"></script>
+		<script src="js/DeviceOrientationControls.js"></script>
+
+		<script>
+
+			var container, camera, scene, renderer, controls;
+
+			init();
+			animate();
+
+			function init() {
+
+				container = document.getElementById( 'container' );
+
+				camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 1, 1100 );
+
+				controls = new THREE.DeviceOrientationControls( camera );
+
+				scene = new THREE.Scene();
+
+				var geometry = new THREE.SphereBufferGeometry( 500, 60, 40 );
+				// invert the geometry on the x-axis so that all of the faces point inward
+				geometry.scale( - 1, 1, 1 );
+
+				var material = new THREE.MeshBasicMaterial( { color: 0xff00ff, wireframe: true } );
+
+				var mesh = new THREE.Mesh( geometry, material );
+				scene.add( mesh );
+
+				renderer = new THREE.WebGLRenderer({alpha:true});
+				renderer.setClearColor(0xffffff, 0);
+				renderer.setPixelRatio( window.devicePixelRatio );
+				renderer.setSize( window.innerWidth, window.innerHeight );
+				container.appendChild( renderer.domElement );
+
+				window.addEventListener( 'resize', onWindowResize, false );
+
+
+			}
+
+			function animate() {
+
+				window.requestAnimationFrame( animate );
+
+				controls.update();
+				renderer.render( scene, camera );
+
+			}
+
+			function onWindowResize() {
+
+				camera.aspect = window.innerWidth / window.innerHeight;
+				camera.updateProjectionMatrix();
+
+				renderer.setSize( window.innerWidth, window.innerHeight );
+
+			}
+
+		</script>
+	</body>
+</html>
