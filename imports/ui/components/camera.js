@@ -2,6 +2,8 @@ import React from 'react'
 
 import {Link} from 'react-router-dom';
 
+import POI from './poi.jsx';
+
 const Camera = () =>({
     render(){
         const code4pa = 'skins/code4pa2.png';
@@ -16,18 +18,28 @@ const Camera = () =>({
             color: "white"
         };
 
-        function createMarkup() {
-            return {__html: " <a-scene embedded artoolkit=\'sourceType: webcam;\'> \
-                                <a-camera id=\"camera\" user-height=\"1.6\" gps-position compass-rotation></a-camera> \
-                                <a-sphere gps-place=\"longitude: -76.880295; latitude: 40.261811\"></a-sphere> \
-                                <a-sphere gps-place=\"longitude: -76.879980; latitude: 40.258458\"></a-sphere> \
-                                <a-sphere gps-place=\"longitude: -76.877753; latitude: 40.258373\"></a-sphere> \
-                                <a-sphere gps-place=\"longitude: -76.880817; latitude: 40.259832\"></a-sphere> \
-                                <a-sphere gps-place=\"longitude: -76.881140; latitude: 40.260634\"></a-sphere> \
-                               <a-sphere gps-place=\"longitude: -76.882112; latitude: 40.259533\"></a-sphere> \
-                               <a-sphere gps-place=\"longitude: -76.882837; latitude: 40.260404\"></a-sphere> \
-                            </a-scene>"};
+        const pois = [
+        {
+            name: '1',
+            lat: '40.261811',
+            long: '-76.880295'
+        },
+        {
+            name: '2',
+            lat: '40.258458',
+            long: '-76.879980'
+        },
+        {
+            name: '3',
+            lat: '40.258373',
+            long: '-76.877753'
+        },
+        {
+            name: '4',
+            lat: '40.259832',
+            long: '-76.880817'
         }
+    ];
 
         return (
             <div>
@@ -46,7 +58,12 @@ const Camera = () =>({
                     </div>
                 </div>
 
-                <div dangerouslySetInnerHTML={createMarkup()}/>
+                <a-scene embedded artoolkit='sourceType: webcam;'>
+                <a-camera id="camera" user-height="1.6" gps-position compass-rotation></a-camera>
+                    {pois.map((poi)=>{
+                        return <POI key={poi.name} lat={poi.lat} long={poi.long} />
+                    })}
+                </a-scene>
             </div>
         );
     },
