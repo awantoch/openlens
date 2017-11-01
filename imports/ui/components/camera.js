@@ -2,6 +2,8 @@ import React from 'react'
 
 import {Link} from 'react-router-dom';
 
+import POI from './poi.jsx';
+
 const Camera = () =>({
     render(){
         const code4pa = 'skins/code4pa2.png';
@@ -19,7 +21,6 @@ const Camera = () =>({
         function createMarkup() {
             return {__html: " <a-scene embedded artoolkit=\'sourceType: webcam;\'> \
                                 <a-camera id=\"camera\" user-height=\"1.6\" gps-position compass-rotation></a-camera> \
-                                <a-sphere gps-place=\"longitude: -76.880295; latitude: 40.261811\"></a-sphere> \
                                 <a-sphere gps-place=\"longitude: -76.879980; latitude: 40.258458\"></a-sphere> \
                                 <a-sphere gps-place=\"longitude: -76.877753; latitude: 40.258373\"></a-sphere> \
                                 <a-sphere gps-place=\"longitude: -76.880817; latitude: 40.259832\"></a-sphere> \
@@ -47,7 +48,9 @@ const Camera = () =>({
                     </div>
                 </div>
 
-                <div dangerouslySetInnerHTML={createMarkup()}/>
+                <POI lat="40.261811" long="-76.880295" />
+
+                
             </div>
         );
     },
