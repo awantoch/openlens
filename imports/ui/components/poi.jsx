@@ -5,10 +5,12 @@ class POI extends Component {
 	    super(props);
 	}
 
+	createMarkup() {
+	    return {__html: "<a-sphere gps-place='longitude: " + this.props.long + "; latitude: " + this.props.lat + "'></a-sphere>" };
+	}
+
 	render() {
-		const {lat, long} = this.props;
-		const coords = "longitude: " + long + "; latitude: " + lat;
-		return <a-sphere gps-place={coords}></a-sphere>
+		return <div dangerouslySetInnerHTML={this.createMarkup()}/>
 	}
 }
 
