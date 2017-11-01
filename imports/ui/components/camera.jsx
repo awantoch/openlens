@@ -26,21 +26,6 @@ class Camera extends Component {
 
         return (
             <div>
-                <div id="location_info">
-                    <div>
-                        coords: <span id="crd_longitude"/>, <span id="crd_latitude"/>
-                        (zero coords: <span id="zero_crd_longitude"/>, <span id="zero_crd_latitude"/>)
-                    </div>
-                    <div>
-                        camera coords: <span id="camera_p_x"/>, <span id="camera_p_z"/>
-                    </div>
-                    <div>
-                        compass heading: <span id="compass_heading"/>,
-                        camera angle: <span id="camera_angle"/>,
-                        yaw angle: <span id="yaw_angle"/>
-                    </div>
-                </div>
-
                 <a-scene embedded artoolkit='sourceType: webcam;'>
                 <a-camera id="camera" user-height="1.6" gps-position compass-rotation></a-camera>
                     {pois.map((poi)=>{
@@ -52,7 +37,7 @@ class Camera extends Component {
     }
 
     componentDidMount(){
-        
+        /*
         var camera = document.getElementById('camera');
 
         camera.addEventListener('componentchanged', function (evt) {
@@ -91,7 +76,7 @@ class Camera extends Component {
 
                     break;
             }
-        });
+        }); */
     }
 
 }
