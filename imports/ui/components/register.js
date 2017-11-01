@@ -2,15 +2,15 @@ import React from 'react'
 
 import {Link} from 'react-router-dom';
 
-const IndexPage = () =>({
+const Register = () =>({
     render(){
         return (
             <div>
-                <h1>Homepage</h1>
-                <Link to={"/camera"}>Camera</Link>
+                <h1>Register</h1>
+                <Link to={"/"}>Home</Link>
             </div>
         );
     }
 });
 
-export default IndexPage
+export default Register
