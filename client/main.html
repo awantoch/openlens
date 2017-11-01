@@ -1,6 +1,5 @@
 <head>
     <meta name="apple-mobile-web-app-capable" content="yes" />
-    <meta name="viewport" content="initial-scale=1">
     <link rel="icon" sizes="192x192" href="/images/nice-highres.png" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <title>Open Lens</title>
@@ -348,14 +347,8 @@
             height: 100vh; !important;
         }
 
-        video{
-            width : 100vh;
-            height: auto;
-            zoom: 0;
-        }
-
         #location_info{
-            position: absolute;
+            position: fixed;
             z-index: 3;
             display: block;
             margin: 0 auto;
@@ -363,12 +356,12 @@
             color: white;
         }
 
-        #page-content{
+        #app, #page-content{
             position: fixed;
             left: 0;
             right: 0;
-            width: 100vw !important;
-            height: 100vh !important;
+            width: 100vw;
+            height: 100vh;
         }
 
     </style>
