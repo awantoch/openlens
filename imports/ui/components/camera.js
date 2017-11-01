@@ -31,8 +31,7 @@ const Camera = () =>({
 
         return (
             <div>
-
-                <div style={styles}>
+                <div id="location_info">
                     <div>
                         coords: <span id="crd_longitude"/>, <span id="crd_latitude"/>
                         (zero coords: <span id="zero_crd_longitude"/>, <span id="zero_crd_latitude"/>)

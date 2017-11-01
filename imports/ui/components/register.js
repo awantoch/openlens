@@ -5,9 +5,12 @@ import {Link} from 'react-router-dom';
 const Register = () =>({
     render(){
         return (
-            <div>
-                <h1>Register</h1>
-                <Link to={"/"}>Home</Link>
+            <div className="row">
+                <div className="col s6 offset-s3">
+                    <div className="card-panel teal">
+                        <h1>Register</h1>
+                    </div>
+                </div>
             </div>
         );
     }

@@ -10,32 +10,6 @@ import {
 	BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 
-const Header = () =>({
-
-	render(){
-		return(
-			<div>
-				<nav className="white" role="navigation">
-					<div className="nav-wrapper container">
-						<ul className="right hide-on-med-and-down">
-							<li><Link className="black-text" to="/login/">Login</Link></li>
-						</ul>
-
-						<ul id="nav-mobile" className="side-nav">
-							<li><Link className="black-text" to="/login/" href="#">Login</Link></li>
-						</ul>
-						<a href="#" data-activates="nav-mobile" className="button-collapse"><i className="material-icons">menu</i></a>
-					</div>
-				</nav>
-			</div>
-		)
-	},
-
-	componentDidMount(){
-	}
-
-});
-
 class MainLayout extends Component {
 
 	constructor(props) {
@@ -47,7 +21,7 @@ class MainLayout extends Component {
 		<Router>
 			<div>
 
-				<div id="page-content" className="thebackground">
+				<div id="page-content">
 						<Switch>
 							<Route exact name="index" path="/" component={IndexPage} />
 							<Route name="camera" path="/camera" component={Camera} />
