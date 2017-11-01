@@ -1,6 +1,6 @@
 import React from 'react';
 import {composeWithTracker} from 'react-komposer';
-import Camera from '../components/camera.jsx';
+import Camera from '../components/camera.js';
 
 const composer = (props, onData) => {
         const pois = [
