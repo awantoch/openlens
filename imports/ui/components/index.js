@@ -1,7 +1,6 @@
 import React from 'react'
 
 import {Link} from 'react-router-dom';
-import {Scene, Entity} from 'aframe-react';
 import 'aframe-environment-component';
 
 const IndexPage = () =>({
@@ -18,8 +17,21 @@ const IndexPage = () =>({
             color: "white"
         };
 
+        function createMarkup() {
+            return {__html: " <a-scene embedded artoolkit=\'sourceType: webcam;\'> \
+                                <a-camera id=\"camera\" user-height=\"1.6\" gps-position compass-rotation></a-camera> \
+                                <a-sphere gps-place=\"longitude: -76.880295; latitude: 40.261811\"></a-sphere> \
+                                <a-sphere gps-place=\"longitude: -76.879980; latitude: 40.258458\"></a-sphere> \
+                                <a-sphere gps-place=\"longitude: -76.877753; latitude: 40.258373\"></a-sphere> \
+                                <a-sphere gps-place=\"longitude: -76.880817; latitude: 40.259832\"></a-sphere> \
+                                <a-sphere gps-place=\"longitude: -76.881140; latitude: 40.260634\"></a-sphere> \
+                               <a-sphere gps-place=\"longitude: -76.882112; latitude: 40.259533\"></a-sphere> \
+                               <a-sphere gps-place=\"longitude: -76.882837; latitude: 40.260404\"></a-sphere> \
+                            </a-scene>"};
+        }
+
         return (
-            <div className="App">
+            <div>
 
                 <div style={styles}>
                     <div>
@@ -36,18 +48,7 @@ const IndexPage = () =>({
                     </div>
                 </div>
 
-                <Scene embedded artoolkit='sourceType: webcam;'>
-
-                    <a-camera id="camera" user-height="1.6" gps-position compass-rotation/>
-                    <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} gps-place="longitude: -76.880295; latitude: 40.261811"/>
-                    <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} gps-place="longitude: -76.879980; latitude: 40.258458"/>
-                    <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} gps-place="longitude: -76.877753; latitude: 40.258373"/>
-                    <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} gps-place="longitude: -76.880817; latitude: 40.259832"/>
-                    <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} gps-place="longitude: -76.881140; latitude: 40.260634"/>
-                    <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} gps-place="longitude: -76.882112; latitude: 40.259533"/>
-                    <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} gps-place="longitude: -76.882837; latitude: 40.260404"/>
-
-                </Scene>
+                <div dangerouslySetInnerHTML={createMarkup()}/>
             </div>
         );
     },
