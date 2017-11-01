@@ -37,7 +37,7 @@ const IndexPage = () =>({
 
                 <Scene embedded artoolkit='sourceType: webcam;'>
 
-                    <Camera id="camera" user-height="1.6" gps-position compass-rotation/>
+                    <a-camera id="camera" user-height="1.6" gps-position compass-rotation/>
 
                     <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} scale={{x: 2, y: 2, z: 2}} gps-place="longitude: -76.880295; latitude: 40.261811"/>
                     <a-sphere gps-place="longitude: -76.879980; latitude: 40.258458"/>
