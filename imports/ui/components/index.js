@@ -9,8 +9,6 @@ const IndexPage = () =>({
                 <br/>
                 <br/>
                 <br/>
-                <br/>
-                <br/>
                 <h1>Homepage</h1>
             </div>
         );
