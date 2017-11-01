@@ -38,7 +38,7 @@ const IndexPage = () =>({
 
                 <Scene embedded artoolkit='sourceType: webcam;'>
 
-                    <Entity camera id="camera" user-height="1.6" gps-position compass-rotation/>
+                    <a-camera id="camera" user-height="1.6" gps-position compass-rotation/>
                     <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} gps-place="longitude: -76.880295; latitude: 40.261811"/>
                     <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} gps-place="longitude: -76.879980; latitude: 40.258458"/>
                     <Entity geometry={{primitive: 'box'}} material={{color: 'red'}} gps-place="longitude: -76.877753; latitude: 40.258373"/>
