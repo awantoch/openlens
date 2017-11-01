@@ -1,9 +1,15 @@
-import React from 'react';
+import React, {Component} from 'react';
 
-const POI = (props) => ({
-	render() {
-		return <a-sphere gps-place="longitude: " + {props.long} + "; latitude: " + {props.lat} + ";"></a-sphere>
+class POI extends Component {
+	constructor(props) {
+	    super(props);
 	}
-});
+
+	render() {
+		const {lat, long} = this.props;
+		const coords = "longitude: " + long + "; latitude: " + lat;
+		return <a-sphere gps-place={coords}></a-sphere>
+	}
+}
 
 export default POI;
