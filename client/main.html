@@ -1,5 +1,6 @@
 <head>
     <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta aframe-injected="" name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,shrink-to-fit=no,user-scalable=no,minimal-ui">
     <link rel="icon" sizes="192x192" href="/images/nice-highres.png" />
     <link rel="apple-touch-icon" href="/images/apple-touch-icon.png" />
     <title>Open Lens</title>
@@ -380,6 +381,18 @@
             display: block;
             margin: 0 auto;
             width: 115px;
+        }
+
+        #actionBar{
+            height: 45px;
+            position: fixed;
+            z-index: 5;
+            top: 0;
+            width: 100vw;
+        }
+
+        nav ul li {
+            display: inline-flex;
         }
 
     </style>

@@ -10,6 +10,28 @@ import {
 	BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
 
 
+const Header = () => ({
+    render() {
+        return (
+			<header id="actionBar" className="header white z-depth-1">
+				<nav className="white">
+					<div className="nav-wrapper">
+						<ul>
+							<li>
+								<Link className="black-text" to="/camera">Camera</Link>
+								<Link className="black-text" to="/map">Map</Link>
+								<Link className="black-text" to="/settings">Settings</Link>
+							</li>
+						</ul>
+
+						<ul id="nav-mobile" className="side-nav" />
+					</div>
+				</nav>
+			</header>
+        );
+    },
+});
+
 class MainLayout extends Component {
 
 	constructor(props) {
@@ -20,6 +42,7 @@ class MainLayout extends Component {
 		return(
 		<Router>
 				<div id="page-content">
+					<Header/>
 						<Switch>
 							<Route exact name="index" path="/" component={IndexPage} />
 							<Route name="camera" path="/camera" component={Camera} />

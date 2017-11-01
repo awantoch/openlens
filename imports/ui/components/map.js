@@ -1,4 +1,4 @@
-import React from 'react'
+import React, {Component} from 'react'
 
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
@@ -6,12 +6,13 @@ const MyMapComponent = withScriptjs(withGoogleMap((props) =>
     <GoogleMap
         defaultZoom={18}
         defaultCenter={{ lat: 40.258944, lng: -76.879448 }}
+        mapTypeId={'satellite'}
     >
-        {props.isMarkerShown && <Marker position={{ lat: props.latv, lng: props.longv }} />}
+        {props.isMarkerShown && <Marker position={{ lat: props.coords.lat, lng: props.coords.lng }} />}
     </GoogleMap>
 ));
 
-class Map extends React.Component {
+class Map extends Component {
     constructor(props) {
         super(props);
         this.state = {
@@ -22,16 +23,16 @@ class Map extends React.Component {
         }
     }
     render(){
+        console.log(this.state.currentLocation);
             return (
                 <div>
                     <MyMapComponent
                         isMarkerShown
-                        googleMapURL="https://maps.googleapis.com/maps/api/js?v=3.exp&libraries=geometry,drawing,places"
+                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpsrdbCAoeB_-c7_--ZSl8_D6vXLmh7go&libraries=geometry,drawing,places"
                         loadingElement={<div style={{ height: `100vh` }} />}
                         containerElement={<div style={{ height: `100vh` }} />}
                         mapElement={<div style={{ height: `100vh` }} />}
-                        latv={this.state.currentLocation.lat}
-                        lngv={this.state.currentLocation.lng}
+                        coords={this.state.currentLocation}
                     />
                 </div>
             );
@@ -41,6 +42,7 @@ class Map extends React.Component {
             if (navigator && navigator.geolocation) {
                 navigator.geolocation.getCurrentPosition((pos) => {
                     const coords = pos.coords;
+                    console.log(coords.latitude);
                     this.setState({
                         currentLocation: {
                             lat: coords.latitude,
