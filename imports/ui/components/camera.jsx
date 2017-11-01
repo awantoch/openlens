@@ -37,7 +37,7 @@ class Camera extends Component {
     }
 
     componentDidMount(){
-        /*
+
         var camera = document.getElementById('camera');
 
         camera.addEventListener('componentchanged', function (evt) {
@@ -76,7 +76,7 @@ class Camera extends Component {
 
                     break;
             }
-        }); */
+        });
     }
 
 }
