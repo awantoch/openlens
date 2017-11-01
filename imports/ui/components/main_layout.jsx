@@ -19,12 +19,17 @@ const Header = () => ({
 						<ul>
 							<li>
 								<Link className="black-text" to="/camera">Camera</Link>
+							</li>
+							<li>
 								<Link className="black-text" to="/map">Map</Link>
+							</li>
+							<li>
 								<Link className="black-text" to="/settings">Settings</Link>
 							</li>
+							<li>
+								<a id="menuToggle" href="#" data-activates="nav-mobile"><i className="black-text material-icons">menu</i></a>
+							</li>
 						</ul>
-
-						<ul id="nav-mobile" className="side-nav" />
 					</div>
 				</nav>
 			</header>
@@ -43,6 +48,20 @@ class MainLayout extends Component {
 		<Router>
 				<div id="page-content">
 					<Header/>
+					<ul id="nav-mobile" className="side-nav">
+						<li>
+							<h3>Layer 1</h3>
+						</li>
+						<li>
+							<h3>Layer 2</h3>
+						</li>
+						<li>
+							<h3>Layer 3</h3>
+						</li>
+						<li>
+							<h3>Layer 4</h3>
+						</li>
+					</ul>
 						<Switch>
 							<Route exact name="index" path="/" component={IndexPage} />
 							<Route name="camera" path="/camera" component={Camera} />
@@ -54,6 +73,9 @@ class MainLayout extends Component {
 				</div>
 		</Router>
 		)
+	}
+	componentDidMount(){
+        $('#menuToggle').sideNav();
 	}
 }
 
