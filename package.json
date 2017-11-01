@@ -4,7 +4,7 @@
   "description": "Open lens beta aplication.",
   "main": "index.js",
   "dependencies": {
-    "aframe": "^0.7.0",
+    "aframe": "^0.7.1",
     "aframe-react": "^4.3.0",
     "babel-runtime": "^6.26.0",
     "hammerjs": "^2.0.8",
