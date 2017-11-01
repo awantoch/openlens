@@ -18,7 +18,7 @@ const IndexPage = () =>({
         };
 
         return (
-            <div className="App">
+            <div>
 
                 <div style={styles}>
                     <div>
