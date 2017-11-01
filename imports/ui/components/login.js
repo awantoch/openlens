@@ -25,7 +25,13 @@ class Login extends React.Component{
 
         return (
             <div className="row">
-                <div className="col s6 offset-s3">
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <br/>
+                <div className="col s8 offset-s2 m4 offset-m4">
                     <div className="card-panel">
                         <div className="card-content">
                             <div className="row">
