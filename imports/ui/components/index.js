@@ -6,8 +6,10 @@ const IndexPage = () =>({
     render(){
         return (
             <div>
+                <br/>
+                <br/>
+                <br/>
                 <h1>Homepage</h1>
-                <Link to={"/camera"}>Camera</Link>
             </div>
         );
     }
