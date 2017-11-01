@@ -2,7 +2,7 @@ import React, {Component} from 'react'
 
 import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
 
-const MyMapComponent = withScriptjs(withGoogleMap((props) =>
+const MapComponent = withScriptjs(withGoogleMap((props) =>
     <GoogleMap
         defaultZoom={18}
         defaultCenter={{ lat: 40.258944, lng: -76.879448 }}
@@ -26,7 +26,7 @@ class Map extends Component {
         console.log(this.state.currentLocation);
             return (
                 <div>
-                    <MyMapComponent
+                    <MapComponent
                         isMarkerShown
                         googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpsrdbCAoeB_-c7_--ZSl8_D6vXLmh7go&libraries=geometry,drawing,places"
                         loadingElement={<div style={{ height: `100vh` }} />}
