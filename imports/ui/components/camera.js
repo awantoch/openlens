@@ -12,18 +12,6 @@ class Camera extends Component {
 
         const {pois} = this.props;
 
-        const code4pa = 'skins/code4pa2.png';
-        const saiyan = 'skins/saiyan.png';
-
-        const styles ={
-            position: 'fixed',
-            top: 10,
-            width: "100%",
-            textAlign: "center",
-            zIndex: 1,
-            color: "white"
-        };
-
         return (
             <div>
                 <div id="location_info">

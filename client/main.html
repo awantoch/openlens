@@ -341,6 +341,12 @@
     </script>
 
     <style>
+
+        body {
+            margin: 0px;
+            overflow: hidden;
+        }
+
         a-scene {
             position: fixed;
             top: 0;
@@ -348,7 +354,7 @@
             height: 100vh; !important;
         }
 
-        #location_info{
+        #location_info {
             position: fixed;
             z-index: 3;
             display: block;
@@ -357,7 +363,8 @@
             color: white;
         }
 
-        #app, #page-content{
+        #app,
+        #page-content {
             position: fixed;
             left: 0;
             right: 0;
@@ -366,11 +373,12 @@
             height: 100vh;
         }
 
-        #arjsDebugUIContainer, #location_info {
+        #location_info,
+        #arjsDebugUIContainer {
         	display: none;
         }
 
-        #signUp{
+        #signUp {
             display: block;
             margin: 0 auto;
             width: 115px;
@@ -391,6 +399,6 @@
     </style>
 </head>
 
-<body style='margin: 0px; overflow: hidden;'>
-<div id="app"></div>
+<body>
+    <div id="app"></div>
 </body>
