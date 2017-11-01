@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import IndexPage from './index.js';
-import Camera from './camera.js'
+import Camera from '../containers/camera.js'
 import Map from './map.js';
 import Settings from './settings.js';
 import Login from './login.js';
