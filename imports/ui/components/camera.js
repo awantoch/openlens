@@ -60,9 +60,7 @@ const Camera = () =>({
 
                 <a-scene embedded artoolkit='sourceType: webcam;'>
                 <a-camera id="camera" user-height="1.6" gps-position compass-rotation></a-camera>
-                    {pois.map((poi)=>{
-                        return <POI key={poi.name} lat={poi.lat} long={poi.long} />
-                    })}
+                    <POI lat={pois[0].lat} long={pois[0].long} />
                 </a-scene>
             </div>
         );
