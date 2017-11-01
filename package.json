@@ -8,13 +8,17 @@
     "aframe-environment-component": "^1.0.0",
     "aframe-react": "^4.3.0",
     "babel-runtime": "^6.26.0",
+    "bcrypt": "^1.0.3",
     "hammerjs": "^2.0.8",
+    "history": "^4.7.2",
     "jquery": "^3.2.1",
     "materialize-css": "^0.100.2",
     "react": "^15.6.2",
     "react-dom": "^15.6.2",
+    "react-google-maps": "^9.2.1",
     "react-komposer": "^1.13.1",
-    "react-router-dom": "^4.2.2"
+    "react-router-dom": "^4.2.2",
+    "recompose": "^0.26.0"
   },
   "devDependencies": {},
   "scripts": {
