@@ -2,8 +2,6 @@ import React from 'react'
 
 import {Link} from 'react-router-dom';
 
-import POI from './poi.jsx';
-
 const Camera = () =>({
     render(){
         const code4pa = 'skins/code4pa2.png';
@@ -60,7 +58,9 @@ const Camera = () =>({
 
                 <a-scene embedded artoolkit='sourceType: webcam;'>
                 <a-camera id="camera" user-height="1.6" gps-position compass-rotation></a-camera>
-                    <POI lat={pois[0].lat} long={pois[0].long} />
+                    {pois.map((poi)=>{
+                        return <a-sphere gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-sphere>
+                    })}
                 </a-scene>
             </div>
         );
