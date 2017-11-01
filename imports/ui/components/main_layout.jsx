@@ -19,8 +19,6 @@ class MainLayout extends Component {
 	render(){
 		return(
 		<Router>
-			<div>
-
 				<div id="page-content">
 						<Switch>
 							<Route exact name="index" path="/" component={IndexPage} />
@@ -31,7 +29,6 @@ class MainLayout extends Component {
 							<Route name="register" path="/register" component={Register} />
 						</Switch>
 				</div>
-			</div>
 		</Router>
 		)
 	}
