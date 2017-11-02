@@ -24,7 +24,7 @@ export class MapView extends Component {
 
         const style = {
             width: '100%',
-            height: '100%'
+            height: '93%'
         };
 
         const {pois} = this.props;

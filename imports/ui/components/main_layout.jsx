@@ -13,7 +13,7 @@ import {
 const Header = () => ({
     render() {
         return (
-				<nav>
+				<nav className="navbar-fixed">
 					<div className="nav-wrapper">
 						<ul>
 							<li>
@@ -42,7 +42,9 @@ const SideNav = () => ({
 				<li><a href="#">Shopping</a></li>
 				<li><a href="#">Adventures</a></li>
 				<li><div className="divider"></div></li>
-				<li className="hide-toggle"><Link to="/settings">Settings</Link></li>
+
+				{Meteor.user() && <li className="hide-toggle"><Link to="/settings">Settings</Link></li>}
+				<li className="hide-toggle">{Meteor.user() ? <Link to="/logout">Logout</Link> : <Link to="/login">Login/Register</Link>}</li>
 			</ul>
 		)
 	}
@@ -60,6 +62,8 @@ class MainLayout extends Component {
 				<div id="page-content">
 					<Header/>
 					<SideNav/>
+
+					<div id="route-content">
 						<Switch>
 							<Route exact name="index" path="/" component={IndexPage} />
 							<Route name="camera" path="/camera" component={Camera} />
@@ -68,6 +72,7 @@ class MainLayout extends Component {
 							<Route name="login" path="/login" component={Login} />
 							<Route name="register" path="/register" component={Register} />
 						</Switch>
+					</div>
 				</div>
 		</Router>
 		)
