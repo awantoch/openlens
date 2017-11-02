@@ -31,11 +31,8 @@ class Camera extends Component {
 
                 <a-scene embedded artoolkit='sourceType: webcam;'>
                 <a-camera id="camera" user-height="1.6" gps-position compass-rotation></a-camera>
-
                     {pois.map((poi)=>{
-                        return (
-                            <a-text key={poi.name} color="white" value={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-text>
-                        )
+                        return <a-tetrahedron color="#FF926B" radius="6" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
                     })}
                 </a-scene>
             </div>
