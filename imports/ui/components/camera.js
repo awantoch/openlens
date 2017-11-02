@@ -33,7 +33,7 @@ class Camera extends Component {
                 <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
                     <a-entity Cursor="fuse: true"
                         Position="0 0 -3"
-                        Geometry="primitive: ring; radiusInner: 0.09; radiusOuter: 0.1"
+                        Geometry="primitive: ring; radiusInner: 0.01; radiusOuter: 0.02"
                         Material="color: purple; shader: flat">
                     </a-entity>
                 </a-camera>
@@ -55,6 +55,9 @@ class Camera extends Component {
             });
             el.addEventListener('mouseleave', function (evt) {
               el.setAttribute('color', 'green')
+            })
+            el.addEventListener('click', function (evt) {
+              alert('asuhhhh!')
             })
           }})
                 
