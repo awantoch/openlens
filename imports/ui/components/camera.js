@@ -34,7 +34,7 @@ class Camera extends Component {
                     <a-entity Cursor="fuse: true"
                         Position="0 0 -3"
                         Geometry="primitive: ring; radiusInner: 0.2; radiusOuter: 0.3"
-                        Material="color: cyan; shader: flat"
+                        Material="color: cyan; shader: flat">
                     </a-entity>
                 </a-camera>
                     {pois.map((poi)=>{
