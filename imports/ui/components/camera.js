@@ -33,7 +33,7 @@ class Camera extends Component {
                 <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
                     <a-entity Cursor="fuse: true"
                         Position="0 0 -3"
-                        Geometry="primitive: ring; radiusInner: 0.09; radiusOuter: 0.1"
+                        Geometry="primitive: sphere; radius: .01"
                         Material="color: purple; shader: flat">
                     </a-entity>
                 </a-camera>
@@ -49,9 +49,16 @@ class Camera extends Component {
 
         AFRAME.registerComponent('cursor-listener', {
           init: function () {
-            this.el.addEventListener('fusing', function (evt) {
-              alert('I was clicked at: ', evt.detail);
+            let el = this.el;
+            el.addEventListener('mouseenter', function (evt) {
+              el.setAttribute('color', 'purple')
             });
+            el.addEventListener('mouseleave', function (evt) {
+              el.setAttribute('color', 'green')
+            })
+            el.addEventListener('click', function (evt) {
+              alert('asuhhhh!')
+            })
           }})
                 
         var camera = document.getElementById('camera');
