@@ -31,13 +31,13 @@ class Camera extends Component {
 
                 <a-scene embedded artoolkit='sourceType: webcam;'>
                 <a-camera id="camera" user-height="1.6" gps-position compass-rotation></a-camera>
-                    <a-entity cursor
-                        position="0 0 -1"
-                        geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                        material="color: black; shader: flat">
+                    <a-entity Cursor=""
+                        Position="0 0 -1"
+                        Geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                        Material="color: black; shader: flat">
                     </a-entity>
                     {pois.map((poi)=>{
-                        return <a-tetrahedron cursor-listener color="#FF926B" radius="5" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
+                        return <a-tetrahedron cursor-listener color="#FF926B" radius="10" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
                     })}
                 </a-scene>
             </div>
