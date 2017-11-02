@@ -13,17 +13,17 @@ import {
 const Header = () => ({
     render() {
         return (
-				<nav className="navbar-fixed">
-					<div className="nav-wrapper">
+				<nav>
+					<div className="nav-wrapper center">
 						<ul>
 							<li>
 								<a id="menuToggle" href="#" data-activates="nav-mobile"><i className="fa fa-bars" aria-hidden="true"></i></a>
 							</li>
 							<li>
-								<Link to="/camera">Camera</Link>
+								<Link to="/camera"><i className="fa fa-camera-retro" aria-hidden="true"></i></Link>
 							</li>
 							<li>
-								<Link to="/map">Map</Link>
+								<Link to="/map"><i className="fa fa-map" aria-hidden="true"></i></Link>
 							</li>
 						</ul>
 					</div>

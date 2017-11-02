@@ -32,13 +32,7 @@ const Register = () =>({
 
     render(){
         return (
-            <div className="row">
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
-                <br/>
+            <div id="register" className="row">
                 <div className="col s6 offset-s3">
                     <div className="card-panel">
                         <div className="card-content">
