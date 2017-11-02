@@ -76,6 +76,7 @@ class MainLayout extends Component {
 	}
 	componentDidMount(){
         $('#menuToggle').sideNav({
+            menuWidth: 200,
             closeOnClick: true,
 		});
 	}
