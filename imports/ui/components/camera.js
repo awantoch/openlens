@@ -30,18 +30,13 @@ class Camera extends Component {
                 </div>
 
                 <a-scene embedded artoolkit='sourceType: webcam;'>
-                    <a-assets>
-                        <img id="cursor-texture" src="img/cursor.png" />
-                    </a-assets>
-
-                    <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
-                        <a-entity Cursor="fuse: true"
-                            Position="0 0 -3"
-                            Geometry="primitive: box; height: .1; width: .1"
-                            Material="src: #cursor-texture; shader: flat">
-                        </a-entity>
-                    </a-camera>
-
+                <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
+                    <a-entity Cursor="fuse: true"
+                        Position="0 0 -3"
+                        Geometry="primitive: ring; radiusInner: 0.086; radiusOuter: 0.09"
+                        Material="shader: flat">
+                    </a-entity>
+                </a-camera>
                     {pois.map((poi)=>{
                         return <a-tetrahedron id={poi.lat+poi.long} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
                     })}
