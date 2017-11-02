@@ -13,7 +13,6 @@ import {
 const Header = () => ({
     render() {
         return (
-			<header id="actionBar" className="header z-depth-1">
 				<nav>
 					<div className="nav-wrapper">
 						<ul>
@@ -29,10 +28,25 @@ const Header = () => ({
 						</ul>
 					</div>
 				</nav>
-			</header>
         );
     },
 });
+
+const SideNav = () => ({
+	render() {
+		return (
+			<ul id="nav-mobile" className="side-nav">
+				<li className="subheader"><i className="fa fa-search-plus" aria-hidden="true" style={{padding: '10px'}}></i>Quick Lenses</li>
+				<li><a href="#">Events</a></li>
+				<li><a href="#">Transport</a></li>
+				<li><a href="#">Shopping</a></li>
+				<li><a href="#">Adventures</a></li>
+				<li><div className="divider"></div></li>
+				<li className="hide-toggle"><Link to="/settings">Settings</Link></li>
+			</ul>
+		)
+	}
+})
 
 class MainLayout extends Component {
 
@@ -45,23 +59,7 @@ class MainLayout extends Component {
 		<Router>
 				<div id="page-content">
 					<Header/>
-					<ul id="nav-mobile" className="side-nav">
-						<li>
-							<h3>Layer 1</h3>
-						</li>
-						<li>
-							<h3>Layer 2</h3>
-						</li>
-						<li>
-							<h3>Layer 3</h3>
-						</li>
-						<li>
-							<h3>Layer 4</h3>
-						</li>
-						<li  className="hide-toggle">
-							<Link className="black-text" to="/settings"><h3>Settings</h3></Link>
-						</li>
-					</ul>
+					<SideNav/>
 						<Switch>
 							<Route exact name="index" path="/" component={IndexPage} />
 							<Route name="camera" path="/camera" component={Camera} />
