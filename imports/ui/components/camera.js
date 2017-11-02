@@ -38,7 +38,7 @@ class Camera extends Component {
                     </a-entity>
                 </a-camera>
                     {pois.map((poi)=>{
-                        return <a-tetrahedron id={poi.lat+poi.long} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
+                        return <a-tetrahedron id={poi.lat+poi.long} data-name={poi.name} data-body={poi.name} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
                     })}
                 </a-scene>
             </div>
@@ -57,7 +57,8 @@ class Camera extends Component {
               el.setAttribute('color', 'green')
             })
             el.addEventListener('click', function (evt) {
-              alert('asuhhhh!')
+              Session.set('info', {title: el.getAttribute('data-name'), body: el.getAttribute('data-body')})
+              $("#MarkerModal").modal('open')
             })
           }})
                 
