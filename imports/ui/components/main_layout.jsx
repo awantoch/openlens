@@ -60,7 +60,6 @@ class MainLayout extends Component {
 		return(
 		<Router>
 				<div id="page-content">
-					<Header/>
 					<SideNav/>
 
 					<div id="route-content">
@@ -73,6 +72,7 @@ class MainLayout extends Component {
 							<Route name="register" path="/register" component={Register} />
 						</Switch>
 					</div>
+					<Header/>
 				</div>
 		</Router>
 		)
