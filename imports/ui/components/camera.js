@@ -49,9 +49,13 @@ class Camera extends Component {
 
         AFRAME.registerComponent('cursor-listener', {
           init: function () {
-            this.el.addEventListener('fusing', function (evt) {
-              alert('I was clicked at: ', evt.detail);
+            let el = this.el;
+            el.addEventListener('mouseenter', function (evt) {
+              el.setAttribute('color', 'purple')
             });
+            el.addEventListener('mouseleave', function (evt) {
+              el.setAttribute('color', 'green')
+            })
           }})
                 
         var camera = document.getElementById('camera');
