@@ -13,18 +13,18 @@ import {
 const Header = () => ({
     render() {
         return (
-			<header id="actionBar" className="header white z-depth-1">
-				<nav className="white">
+			<header id="actionBar" className="header z-depth-1">
+				<nav>
 					<div className="nav-wrapper">
 						<ul>
 							<li>
-								<Link className="black-text" to="/camera">Camera</Link>
+								<a id="menuToggle" href="#" data-activates="nav-mobile"><i className="fa fa-bars" aria-hidden="true"></i></a>
 							</li>
 							<li>
-								<Link className="black-text" to="/map">Map</Link>
+								<Link to="/camera">Camera</Link>
 							</li>
 							<li>
-								<a id="menuToggle" href="#" data-activates="nav-mobile"><i className="black-text material-icons">menu</i></a>
+								<Link to="/map">Map</Link>
 							</li>
 						</ul>
 					</div>
