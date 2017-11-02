@@ -38,7 +38,7 @@ class Camera extends Component {
                     </a-entity>
                 </a-camera>
                     {pois.map((poi)=>{
-                        return <a-tetrahedron id={poi.lat+poi.long} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
+                        return <a-tetrahedron id={poi.lat+poi.long} data-name={poi.name} data-body={poi.name} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
                     })}
                 </a-scene>
             </div>
@@ -49,8 +49,9 @@ class Camera extends Component {
 
         AFRAME.registerComponent('cursor-listener', {
           init: function () {
-            this.el.addEventListener('fusing', function (evt) {
-              alert('I was clicked at: ', evt.detail);
+            let el = this.el;
+            el.addEventListener('mouseenter', function (evt) {
+              el.setAttribute('color', 'purple')
             });
             el.addEventListener('mouseleave', function (evt) {
               el.setAttribute('color', 'green')
@@ -58,7 +59,7 @@ class Camera extends Component {
             el.addEventListener('click', function (evt) {
               $("#MarkerModal").modal('open')
             })
-          }});
+          }})
                 
         var camera = document.getElementById('camera');
 
