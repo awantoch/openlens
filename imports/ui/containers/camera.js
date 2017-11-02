@@ -3,7 +3,7 @@ import {composeWithTracker} from 'react-komposer';
 import Camera from '../components/camera.js';
 
 const composer = (props, onData) => {
-        const pois = [
+    const pois = [
         {
             name: '1',
             lat: '40.261811',
