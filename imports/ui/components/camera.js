@@ -34,7 +34,7 @@ class Camera extends Component {
 
                     {pois.map((poi)=>{
                         return (
-                            <a-text key={poi.name} value={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-text>
+                            <a-text key={poi.name} color="white" value={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-text>
                         )
                     })}
                 </a-scene>
