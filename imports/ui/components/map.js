@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
+import MarkerModal from "./markerModal";
 
 export class MapView extends Component {
 
@@ -9,7 +10,11 @@ export class MapView extends Component {
         this.state = {
             activeMarker: {},
             selectedPlace: {},
-        }
+            markerModal: false,
+            modalData:{},
+        };
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
     }
 
     onMapClicked(){
@@ -17,7 +22,16 @@ export class MapView extends Component {
     }
 
     onMarkerClick(data) {
+        this.openModal(data);
         $('#MarkerModal').modal('open');
+    }
+
+    openModal(data){
+        this.setState({modalData: data, markerModal: !this.state.markerModal});
+    }
+
+    closeModal(){
+        this.setState({markerModal: false});
     }
 
     render() {
@@ -30,26 +44,30 @@ export class MapView extends Component {
         const {pois} = this.props;
 
         return (
-            <Map
-                google={this.props.google}
-                style={style}
-                initialCenter={{
-                    lat: 40.258642,
-                    lng: -76.878926
-                }}
-                zoom={18}
-                mapType={"Satellite"}
-                onClick={this.onMapClicked}
-            >
+            <div>
+                <MarkerModal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
+                <Map
+                    google={this.props.google}
+                    style={style}
+                    initialCenter={{
+                        lat: 40.258642,
+                        lng: -76.878926
+                    }}
+                    zoom={18}
+                    mapType={"Satellite"}
+                    onClick={this.onMapClicked}
+                >
 
-            {pois.map((poi)=>{
-                return <Marker onClick={this.onMarkerClick.bind(this, poi.name)}
-                    title={poi.name}
-                    name={poi.name}
-                    position={{lat: poi.lat, lng: poi.long}} />
-            })}
+                {pois.map((poi)=>{
+                    return <Marker key={poi.lat+poi.long}
+                        onClick={this.onMarkerClick.bind(this, poi)}
+                        title={poi.name}
+                        name={poi.name}
+                        position={{lat: poi.lat, lng: poi.long}} />
+                })}
 
-            </Map>
+                </Map>
+            </div>
         );
     }
 }

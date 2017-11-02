@@ -74,7 +74,6 @@ class MainLayout extends Component {
 						</Switch>
 					</div>
 					<Header/>
-					<MarkerModal/>
 				</div>
 		</Router>
 		)
