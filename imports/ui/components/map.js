@@ -4,13 +4,22 @@ import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
 export class MapView extends Component {
 
-    constructor(props){
+    constructor(props) {
         super(props);
+        this.state = {
+            activeMarker: {},
+            selectedPlace: {},
+        }
     }
 
     onMapClicked(){
         console.log("Clicked!")
     }
+
+    onMarkerClick(data) {
+        alert(data)
+    }
+
     render() {
 
         const style = {
@@ -34,7 +43,7 @@ export class MapView extends Component {
             >
 
             {pois.map((poi)=>{
-                return <Marker
+                return <Marker onClick={this.onMarkerClick.bind(this, poi.name)}
                     title={poi.name}
                     name={poi.name}
                     position={{lat: poi.lat, lng: poi.long}} />
