@@ -57,7 +57,6 @@ class Camera extends Component {
               el.setAttribute('color', 'green')
             })
             el.addEventListener('click', function (evt) {
-              Session.set('info', {title: el.getAttribute('data-name'), body: el.getAttribute('data-body')})
               $("#MarkerModal").modal('open')
             })
           }})
