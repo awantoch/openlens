@@ -33,10 +33,9 @@ class Camera extends Component {
                 <a-camera id="camera" user-height="1.6" gps-position compass-rotation></a-camera>
 
                     {pois.map((poi)=>{
-                        return (<div key={poi.name}>
-                            <a-text value={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-text>
-                            <a-tetrahedron color="#FF926B" radius="6" gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
-                        </div>)
+                        return (
+                            <a-text key={poi.name} value={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-text>
+                        )
                     })}
                 </a-scene>
             </div>
