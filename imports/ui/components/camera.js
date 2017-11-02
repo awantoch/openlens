@@ -50,7 +50,7 @@ class Camera extends Component {
         AFRAME.registerComponent('cursor-listener', {
           init: function () {
             this.el.addEventListener('click', function (evt) {
-              alert('I was clicked at: ', evt);
+              console.log('I was clicked at: ', evt.detail);
             });
           }})
                 
