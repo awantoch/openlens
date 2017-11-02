@@ -31,10 +31,10 @@ class Camera extends Component {
 
                 <a-scene embedded artoolkit='sourceType: webcam;'>
                 <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
-                    <a-entity Cursor="fuse: true"
+                    <a-entity Cursor="fuse: false"
                         Position="0 0 -3"
                         Geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
-                        Material="color: cyan; shader: flat">
+                        Material="color: purple; shader: flat">
                     </a-entity>
                 </a-camera>
                     {pois.map((poi)=>{
@@ -50,7 +50,7 @@ class Camera extends Component {
         AFRAME.registerComponent('cursor-listener', {
           init: function () {
             this.el.addEventListener('click', function (evt) {
-              alert('I was clicked at: ', evt.detail.intersection);
+              alert('I was clicked at: ', evt);
             });
           }})
                 
