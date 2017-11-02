@@ -1,56 +1,50 @@
 import React, {Component} from 'react'
 
-import { withScriptjs, withGoogleMap, GoogleMap, Marker } from "react-google-maps"
+import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
 
-const MapComponent = withScriptjs(withGoogleMap((props) =>
-    <GoogleMap
-        defaultZoom={18}
-        defaultCenter={{ lat: props.coords.lat, lng: props.coords.lng }}
-        mapTypeId={'satellite'}
-    >
-        {props.isMarkerShown && <Marker position={{ lat: props.coords.lat, lng: props.coords.lng }} />}
-    </GoogleMap>
-));
+export class MapView extends Component {
 
-class Map extends Component {
-    constructor(props) {
+    constructor(props){
         super(props);
-        this.state = {
-            currentLocation: {
-                lat: -76,
-                lng: 30
-            }
-        }
-    }
-    render(){
-            return (
-                <div>
-                    <MapComponent
-                        isMarkerShown
-                        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBpsrdbCAoeB_-c7_--ZSl8_D6vXLmh7go&libraries=geometry,drawing,places"
-                        loadingElement={<div style={{ height: `100vh` }} />}
-                        containerElement={<div style={{ height: `100vh` }} />}
-                        mapElement={<div style={{ height: `100vh` }} />}
-                        coords={this.state.currentLocation}
-                    />
-                </div>
-            );
     }
 
-    componentDidMount() {
-            if (navigator && navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition((pos) => {
-                    const coords = pos.coords;
-                    console.log(coords.latitude);
-                    this.setState({
-                        currentLocation: {
-                            lat: coords.latitude,
-                            lng: coords.longitude
-                        }
-                    })
-                })
-            }
-        }
+    onMapClicked(){
+        console.log("Clicked!")
+    }
+    render() {
+
+        const style = {
+            width: '100%',
+            height: '100%'
+        };
+
+        const {pois} = this.props;
+
+        return (
+            <Map
+                google={this.props.google}
+                style={style}
+                initialCenter={{
+                    lat: 40.258642,
+                    lng: -76.878926
+                }}
+                zoom={18}
+                mapType={"Satellite"}
+                onClick={this.onMapClicked}
+            >
+
+            {pois.map((poi)=>{
+                return <Marker
+                    title={poi.name}
+                    name={poi.name}
+                    position={{lat: poi.lat, lng: poi.long}} />
+            })}
+
+            </Map>
+        );
+    }
 }
 
-export default Map
+export default GoogleApiWrapper({
+    apiKey: "AIzaSyBpsrdbCAoeB_-c7_--ZSl8_D6vXLmh7go"
+})(MapView)

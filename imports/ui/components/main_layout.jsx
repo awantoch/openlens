@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import IndexPage from './index.js';
 import Camera from '../containers/camera.js'
-import Map from './map.js';
+import Map from '../containers/map.js';
 import Settings from './settings.js';
 import Login from './login.js';
 import Register from './register.js';
