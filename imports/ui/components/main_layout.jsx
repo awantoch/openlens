@@ -13,21 +13,21 @@ import {
 const Header = () => ({
     render() {
         return (
-				<nav>
-					<div className="nav-wrapper center">
+				<div>
+					<div id="action-bar">
 						<ul>
 							<li>
-								<a id="menuToggle" href="#" data-activates="nav-mobile"><i className="fa fa-bars" aria-hidden="true"></i></a>
+								<a id="menuToggle" href="#" data-activates="nav-mobile"><i className="fa fa-bars big-icon" aria-hidden="true"/></a>
 							</li>
 							<li>
-								<Link to="/camera"><i className="fa fa-camera-retro" aria-hidden="true"></i></Link>
+								<Link to="/camera"><i className="fa fa-camera-retro big-icon" aria-hidden="true"/></Link>
 							</li>
 							<li>
-								<Link to="/map"><i className="fa fa-map" aria-hidden="true"></i></Link>
+								<Link to="/map"><i className="fa fa-map big-icon" aria-hidden="true"/></Link>
 							</li>
 						</ul>
 					</div>
-				</nav>
+				</div>
         );
     },
 });
