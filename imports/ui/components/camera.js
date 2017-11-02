@@ -30,9 +30,15 @@ class Camera extends Component {
                 </div>
 
                 <a-scene embedded artoolkit='sourceType: webcam;'>
-                <a-camera id="camera" user-height="1.6" gps-position compass-rotation></a-camera>
+                <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
+                    <a-entity Cursor="fuse: true"
+                        Position="0 0 -3"
+                        Geometry="primitive: ring; radiusInner: 0.2; radiusOuter: 0.3"
+                        Material="color: cyan; shader: flat"
+                    </a-entity>
+                </a-camera>
                     {pois.map((poi)=>{
-                        return <a-tetrahedron color="#FF926B" radius="6" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
+                        return <a-tetrahedron cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
                     })}
                 </a-scene>
             </div>
@@ -40,6 +46,13 @@ class Camera extends Component {
     }
 
     componentDidMount(){
+
+        AFRAME.registerComponent('cursor-listener', {
+          init: function () {
+            this.el.addEventListener('click', function (evt) {
+              alert('I was clicked at: ', evt.detail.intersection.point);
+            });
+          }})
                 
         var camera = document.getElementById('camera');
 
