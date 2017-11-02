@@ -32,8 +32,8 @@ class Camera extends Component {
                 <a-scene embedded artoolkit='sourceType: webcam;'>
                 <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
                     <a-entity Cursor="fuse: true"
-                        Position="0 0 -3"
-                        Geometry="primitive: ring; radiusInner: 0.02; radiusOuter: 0.03"
+                        Position="0 0 -1"
+                        Geometry="primitive: ring; radiusInner: 0.03; radiusOuter: 0.03"
                         Material="color: cyan; shader: flat">
                     </a-entity>
                 </a-camera>
