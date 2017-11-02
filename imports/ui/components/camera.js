@@ -38,7 +38,7 @@ class Camera extends Component {
                     </a-entity>
                 </a-camera>
                     {pois.map((poi)=>{
-                        return <a-tetrahedron id={poi.lat+poi.long} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
+                        return <a-tetrahedron id={poi.lat+poi.long} event-set__enter="_event: mouseenter; color: #8FF7FF" cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
                     })}
                 </a-scene>
             </div>
@@ -50,9 +50,6 @@ class Camera extends Component {
         AFRAME.registerComponent('cursor-listener', {
           init: function () {
             this.el.addEventListener('click', function (evt) {
-              alert('I was clicked at: ', evt.detail);
-            });
-            this.el.addEventListener('hovered', function (evt) {
               alert('I was clicked at: ', evt.detail);
             });
           }})
