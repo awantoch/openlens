@@ -17,7 +17,7 @@ export class MapView extends Component {
     }
 
     onMarkerClick(data) {
-        alert(data)
+        $('#MarkerModal').modal('open');
     }
 
     render() {

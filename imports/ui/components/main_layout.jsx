@@ -5,6 +5,7 @@ import Map from '../containers/map.js';
 import Settings from './settings.js';
 import Login from './login.js';
 import Register from './register.js';
+import MarkerModal from './markerModal'
 
 import {
 	BrowserRouter as Router, Switch, Route, Link} from 'react-router-dom';
@@ -73,6 +74,7 @@ class MainLayout extends Component {
 						</Switch>
 					</div>
 					<Header/>
+					<MarkerModal/>
 				</div>
 		</Router>
 		)
