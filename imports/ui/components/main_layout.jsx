@@ -24,9 +24,6 @@ const Header = () => ({
 								<Link className="black-text" to="/map">Map</Link>
 							</li>
 							<li>
-								<Link className="black-text" to="/settings">Settings</Link>
-							</li>
-							<li>
 								<a id="menuToggle" href="#" data-activates="nav-mobile"><i className="black-text material-icons">menu</i></a>
 							</li>
 						</ul>
@@ -61,6 +58,9 @@ class MainLayout extends Component {
 						<li>
 							<h3>Layer 4</h3>
 						</li>
+						<li  className="hide-toggle">
+							<Link className="black-text" to="/settings"><h3>Settings</h3></Link>
+						</li>
 					</ul>
 						<Switch>
 							<Route exact name="index" path="/" component={IndexPage} />
@@ -75,7 +75,9 @@ class MainLayout extends Component {
 		)
 	}
 	componentDidMount(){
-        $('#menuToggle').sideNav();
+        $('#menuToggle').sideNav({
+            closeOnClick: true,
+		});
 	}
 }
 
