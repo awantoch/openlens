@@ -51,6 +51,9 @@ class Camera extends Component {
           init: function () {
             this.el.addEventListener('click', function (evt) {
               alert('I was clicked at: ', evt.detail);
+            }
+            this.el.addEventListener('hovered', function (evt) {
+              alert('I was clicked at: ', evt.detail);
             });
           }})
                 
