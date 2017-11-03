@@ -58,9 +58,9 @@ class Camera extends Component {
                         </a-entity>
                     </a-camera>
 
-                    {pois.map((poi)=>{
+                    {pois ? pois.map((poi)=>{
                         return <a-tetrahedron id={poi._id} cursor-listener color="#FF926B" radius="3" key={poi._id} gps-Place={"longitude: " + poi.loc.coordinates[0] + "; latitude: " + poi.loc.coordinates[1]}></a-tetrahedron>
-                    })}
+                    }) : null}
                 </a-scene>
             </div>
         );
