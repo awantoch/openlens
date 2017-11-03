@@ -15,7 +15,6 @@ class Camera extends Component {
     }
 
     onMarkerClick(data) {
-        alert(data.name)
         this.openModal(data);
         $('#MarkerModal').modal('open');
     }
@@ -69,29 +68,35 @@ class Camera extends Component {
 
     componentDidMount(){
 
-        var onMarkerClick = this.onMarkerClick;
+        const {pois} = this.props;
+        const callModal = this.onMarkerClick;
 
-        AFRAME.registerComponent('cursor-listener', {
-          init: function () {
-            let el = this.el;
-            el.addEventListener('mouseenter', function (evt) {
-              el.setAttribute('color', 'purple')
+        try {
+            AFRAME.registerComponent('cursor-listener', {
+                init: function () {
+                    let el = this.el;
+                    el.addEventListener('mouseenter', function (evt) {
+                      el.setAttribute('color', 'purple')
+                    });
+                    el.addEventListener('mouseleave', function (evt) {
+                      el.setAttribute('color', 'green')
+                    })
+                    el.addEventListener('click', function (evt) {
+                      callModal(pois[0])
+                    })
+                }
             });
-            el.addEventListener('mouseleave', function (evt) {
-              el.setAttribute('color', 'green')
-            })
-            el.addEventListener('click', function (evt) {
-              onMarkerClick({name: 'asuh'})
-            })
-          }})
+        } catch (Error) {
+            // catch when routing tries to reregister
+        }
                 
-        var camera = document.getElementById('camera');
+        let camera = document.getElementById('camera');
 
         camera.addEventListener('componentchanged', function (evt) {
             switch(evt.detail.name){
                 case 'rotation':
                     //console.log('camera rotation changed', evt.detail.newData);
-                    var
+                    let
                         compassRotation = camera.components['compass-rotation'],
                         lookControls = camera.components['look-controls']
                     ;
@@ -105,7 +110,7 @@ class Camera extends Component {
                     break;
                 case 'position':
                     //console.log('camera position changed', evt.detail.newData);
-                    var
+                    let
                         gpsPosition = camera.components['gps-position']
                     ;
                     camera_p_x.innerText = evt.detail.newData.x;

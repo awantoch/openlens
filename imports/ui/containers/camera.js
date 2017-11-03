@@ -5,7 +5,7 @@ import Camera from '../components/camera.js';
 const composer = (props, onData) => {
     const pois = [
         {
-            name: '1',
+            name: 'Harrisburg University',
             lat: '40.261811',
             long: '-76.880295'
         },
