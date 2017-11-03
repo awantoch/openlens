@@ -70,7 +70,7 @@ class Camera extends Component {
         const {pois} = this.props;
         const callModal = this.onMarkerClick;
 
-        try {
+        if (!aframeRegistered) {
             AFRAME.registerComponent('cursor-listener', {
                 init: function () {
                     let el = this.el;
@@ -86,8 +86,6 @@ class Camera extends Component {
                     })
                 }
             });
-        } catch (Error) {
-            // catch when routing tries to reregister
         }
                 
         let camera = document.getElementById('camera');
