@@ -5,10 +5,11 @@ import {Points} from '/lib/collections';
 
 const composer = (props, onData) => {
     if (Meteor.subscribe('points').ready()) {
+        const loc = currentLocation.slice(0);
         const pois = Points.find({loc: { $near: {
                                            $geometry: {
                                               type: "Point" ,
-                                              coordinates: [ currentLocation[0] , currentLocation[1] ]
+                                              coordinates: [ loc[0] , loc[1] ]
                                            },
                                            $maxDistance: 1000
                                          }

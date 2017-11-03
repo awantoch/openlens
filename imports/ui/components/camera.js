@@ -95,7 +95,7 @@ class Camera extends Component {
                 })
             }
         });
-
+        
         aframeRegistered = true;
                 
         let camera = document.getElementById('camera');
@@ -125,12 +125,12 @@ class Camera extends Component {
                     camera_p_z.innerText = evt.detail.newData.z;
                     if(gpsPosition){
                         if(gpsPosition.crd){
-                            crd_longitude.innerText = gpsPosition.crd.longitude;
-                            crd_latitude.innerText = gpsPosition.crd.latitude;
+                            crd_longitude.innerText, currentLocation[0] = gpsPosition.crd.longitude;
+                            crd_latitude.innerText, currentLocation[1] = gpsPosition.crd.latitude;
                         }
                         if(gpsPosition.zeroCrd){
-                            zero_crd_longitude.innerText = gpsPosition.zeroCrd.longitude;
-                            zero_crd_latitude.innerText = gpsPosition.zeroCrd.latitude;
+                            zero_crd_longitude.innerText, currentLocation[0] = gpsPosition.zeroCrd.longitude;
+                            zero_crd_latitude.innerText, currentLocation[1] = gpsPosition.zeroCrd.latitude;
                         }
                     }
 
