@@ -1,6 +1,6 @@
 import React, {Component} from 'react'
 
-class MarkerModal extends Component {
+class Modal extends Component {
 
     constructor(props) {
         super(props)
@@ -38,4 +38,4 @@ class MarkerModal extends Component {
     }
 }
 
-export default MarkerModal;
+export default Modal;

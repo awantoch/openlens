@@ -4,12 +4,12 @@ import {Lenses} from '/lib/collections';
 
 Meteor.methods({
 
-    'lens.create'(name){
-        Lenses.insert({name: name, points: {}});
+    'lens.create'(name, owner, members){
+        Lenses.insert({name: name, owner: owner, members: members});
     },
 
     'lens.addPoint'(name, lat, lng){
-        Lenses.update(
+        Points.update(
             { $addToSet:
                 {'points.name': name, 'points.lat': lat, 'points.lng': lng}
             });
