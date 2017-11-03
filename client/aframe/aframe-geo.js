@@ -108,7 +108,7 @@ AFRAME.registerComponent('compass-rotation', {
     schema: {
         fixTime: {
             type: 'int',
-            default: 13333
+            default: 8000
         },
         orientationEvent: {
             type: 'string',
