@@ -14,7 +14,11 @@
     <script>
         function getLocation() {
             if (navigator.geolocation) {
-                navigator.geolocation.getCurrentPosition(()=>{}, showError);
+                navigator.geolocation.getCurrentPosition((pos)=>{
+                    currentLocation[0] = pos.coords.longtitude;
+                    currentLocation[1] = pos.coords.latitude;
+                    alert('your position', currentLocation)
+                }, showError);
             } else { 
                 alert("Geolocation is not supported by this browser.");
             }
