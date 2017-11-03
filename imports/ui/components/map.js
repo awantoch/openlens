@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 import {Map, InfoWindow, Marker, GoogleApiWrapper} from 'google-maps-react';
-import MarkerModal from "./markerModal";
+import Modal from "./markerModal";
 
 export class MapView extends Component {
 
@@ -13,7 +13,7 @@ export class MapView extends Component {
             markerModal: false,
             modalData:{},
             currentPos: false,
-            mapEditor: false
+            isEditMode: false
         };
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
@@ -48,6 +48,10 @@ export class MapView extends Component {
         }
     }
 
+    toggleEditor(){
+        this.setState({isEditMode: !this.state.isEditMode})
+    }
+
     render() {
 
         const style = {
@@ -56,35 +60,60 @@ export class MapView extends Component {
         };
 
         const {pois} = this.props;
+        const isEditMode = this.state.isEditMode === true;
 
-        return (
-            <div>
-                <MarkerModal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
-                <Map id="map"
-                    google={this.props.google}
-                    style={style}
-                    initialCenter={{
-                        lat: 40.258642,
-                        lng: -76.878926
-                    }}
-                    zoom={18}
-                    mapType={"Satellite"}
-                    onClick={this.mapClicked}
-                >
+        if(!this.state.isEditMode){
+            return (
+                <div>
+                    <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-plus-square" aria-hidden="true"/></div>
+                    <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
+                    <Map
+                         google={this.props.google}
+                         style={style}
+                         initialCenter={{
+                             lat: 40.258642,
+                             lng: -76.878926
+                         }}
+                         zoom={18}
+                         mapType={"Satellite"}
+                         onClick={this.mapClicked}
+                    >
+                        {pois.map((poi)=>{
+                            return <Marker key={poi.lat+poi.long}
+                                           onClick={this.onMarkerClick.bind(this, poi)}
+                                           title={poi.name}
+                                           name={poi.name}
+                                           position={{lat: poi.lat, lng: poi.long}} />
+                        })}
 
-                {pois.map((poi)=>{
-                    return <Marker key={poi.lat+poi.long}
-                        onClick={this.onMarkerClick.bind(this, poi)}
-                        title={poi.name}
-                        name={poi.name}
-                        position={{lat: poi.lat, lng: poi.long}} />
-                })}
+                        {this.currentClick()}
 
-                {this.currentClick()}
+                    </Map>
+                </div>
+            );
+        }else{
+            return (
+                <div>
+                    <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-plus-square" aria-hidden="true"/></div>
+                    <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
+                    <Map
+                         google={this.props.google}
+                         style={style}
+                         initialCenter={{
+                             lat: 40.258642,
+                             lng: -76.878926
+                         }}
+                         zoom={18}
+                         mapType={"Satellite"}
+                         onClick={this.mapClicked}
+                    >
+                        {this.currentClick()}
 
-                </Map>
-            </div>
-        );
+                    </Map>
+                </div>
+            );
+        }
+
     }
 }
 
