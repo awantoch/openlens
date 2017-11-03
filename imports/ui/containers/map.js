@@ -3,29 +3,17 @@ import {composeWithTracker} from 'react-komposer';
 import MapView from '../components/map.js';
 
 const composer = (props, onData) => {
-    const pois = [
-        {
-            name: '1',
-            lat: '40.261811',
-            long: '-76.880295'
-        },
-        {
-            name: '2',
-            lat: '40.258458',
-            long: '-76.879980'
-        },
-        {
-            name: '3',
-            lat: '40.258373',
-            long: '-76.877753'
-        },
-        {
-            name: '4',
-            lat: '40.259832',
-            long: '-76.880817'
-        }
-    ];
-    onData(null, {pois});
+    if (Meteor.subscribe('points').ready() && currentLocation.length > 0) {
+        const pois = Points.find({loc: { $near: {
+                                           $geometry: {
+                                              type: "Point" ,
+                                              coordinates: [ currentLocation[0] , currentLocation[1] ]
+                                           },
+                                           $maxDistance: 1000
+                                         }
+                                       }}, {limit: 75}).fetch();
+        onData(null, {pois});
+    }
 };
 
 export default composeWithTracker(composer)(MapView);

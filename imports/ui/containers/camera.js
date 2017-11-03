@@ -4,7 +4,7 @@ import Camera from '../components/camera.js';
 import {Points} from '/lib/collections';
 
 const composer = (props, onData) => {
-    if (Meteor.subscribe('points').ready()) {
+    if (Meteor.subscribe('points').ready()  && currentLocation.length > 0) {
         const pois = Points.find({loc: { $near: {
                                            $geometry: {
                                               type: "Point" ,

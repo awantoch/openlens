@@ -78,24 +78,25 @@ class Camera extends Component {
         const {pois} = this.props;
         const callModal = this.onMarkerClick;
 
-        if (!aframeRegistered) {
-            AFRAME.registerComponent('cursor-listener', {
-                init: function () {
-                    let el = this.el;
-                    el.addEventListener('mouseenter', function (evt) {
-                        el.setAttribute('color', 'purple')
-                    });
-                    el.addEventListener('mouseleave', function (evt) {
-                        el.setAttribute('color', 'green')
-                    })
-                    el.addEventListener('click', function (evt) {
-                        let poi = _.findWhere(pois, {_id: el.getAttribute('id')});
-                        callModal(poi)
-                    })
-                }
-            });
-            aframeRegistered = true;
-        }
+        if (aframeRegistered) delete AFRAME.components['cursor-listener'];
+
+        AFRAME.registerComponent('cursor-listener', {
+            init: function () {
+                let el = this.el;
+                el.addEventListener('mouseenter', function (evt) {
+                    el.setAttribute('color', 'purple')
+                });
+                el.addEventListener('mouseleave', function (evt) {
+                    el.setAttribute('color', 'green')
+                })
+                el.addEventListener('click', function (evt) {
+                    let poi = _.findWhere(pois, {_id: el.getAttribute('id')});
+                    callModal(poi)
+                })
+            }
+        });
+        
+        aframeRegistered = true;
                 
         let camera = document.getElementById('camera');
 
