@@ -54,13 +54,13 @@ class Camera extends Component {
                         <a-portal-door url='https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg' position='0 0 0' scale='0.7 1 0.7' rotation='0 90 0'/>
 
                     </a-anchor>
-                    <a-camera-static id="camera" user-height="1.6" gps-position compass-rotation>
+                    <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
                         <a-entity Cursor="fuse: false"
                             Position="0 0 -3"
                             Geometry="primitive: ring; radiusInner: 0.03; radiusOuter: 0.04"
                             Material="shader: flat">
                         </a-entity>
-                    </a-camera-static>
+                    </a-camera>
 
 
 
