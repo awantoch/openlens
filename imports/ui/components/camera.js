@@ -11,7 +11,6 @@ class Camera extends Component {
             markerModal: false,
             modalData:{},
         };
-        this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
     }
 
