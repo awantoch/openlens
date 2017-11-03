@@ -14,8 +14,6 @@ class Modal extends Component {
         if (this.props.isOpen === false) {
             return null;
         } else {
-
-            console.log(this.props.children);
             return (
                 <div id="MarkerModal" className="modal">
                     <div className="modal-content">

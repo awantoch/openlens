@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 import {Link} from 'react-router-dom';
-import MarkerModal from "./markerModal";
+import Modal from "./markerModal";
 
 class Camera extends Component {
 
@@ -15,12 +15,8 @@ class Camera extends Component {
     }
 
     onMarkerClick(data) {
-        this.openModal(data);
-        $('#MarkerModal').modal('open');
-    }
-
-    openModal(data){
         this.setState({modalData: data, markerModal: !this.state.markerModal});
+        $('#MarkerModal').modal('open');
     }
 
     closeModal(){
@@ -33,7 +29,7 @@ class Camera extends Component {
 
         return (
             <div>
-                <MarkerModal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
+                <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
                 <div id="location_info">
                     <div>
                         coords: <span id="crd_longitude"/>, <span id="crd_latitude"/>
@@ -58,9 +54,9 @@ class Camera extends Component {
                         </a-entity>
                     </a-camera>
 
-                    {pois.map((poi)=>{
-                        return <a-tetrahedron id={poi.lat+poi.long} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
-                    })}
+                    {pois ? pois.map((poi)=>{
+                        return <a-tetrahedron id={poi._id} cursor-listener color="#FF926B" radius="3" key={poi._id} gps-Place={"longitude: " + poi.loc.coordinates[0] + "; latitude: " + poi.loc.coordinates[1]}></a-tetrahedron>
+                    }) : null}
                 </a-scene>
             </div>
         );
@@ -76,13 +72,14 @@ class Camera extends Component {
                 init: function () {
                     let el = this.el;
                     el.addEventListener('mouseenter', function (evt) {
-                      el.setAttribute('color', 'purple')
+                        el.setAttribute('color', 'purple')
                     });
                     el.addEventListener('mouseleave', function (evt) {
-                      el.setAttribute('color', 'green')
+                        el.setAttribute('color', 'green')
                     })
                     el.addEventListener('click', function (evt) {
-                      callModal(pois[0])
+                        let poi = _.findWhere(pois, {_id: el.getAttribute('id')})
+                        callModal(poi)
                     })
                 }
             });
