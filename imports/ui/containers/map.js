@@ -1,5 +1,6 @@
 import React from 'react';
 import {composeWithTracker} from 'react-komposer';
+import {Points} from '/lib/collections';
 import MapView from '../components/map.js';
 
 const composer = (props, onData) => {
