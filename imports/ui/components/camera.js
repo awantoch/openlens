@@ -16,6 +16,7 @@ class Camera extends Component {
     }
 
     onMarkerClick(data) {
+        alert('yoyoyo')
         this.openModal(data);
         $('#MarkerModal').modal('open');
     }
