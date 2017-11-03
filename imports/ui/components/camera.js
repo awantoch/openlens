@@ -83,6 +83,7 @@ class Camera extends Component {
                     })
                     el.addEventListener('click', function (evt) {
                         let poi = _.findWhere(pois, {_id: el.getAttribute('id')})
+                        alert(poi.data.name)
                         callModal(poi)
                     })
                 }
