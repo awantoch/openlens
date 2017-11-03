@@ -10,17 +10,18 @@ export class MapView extends Component {
         this.state = {
             activeMarker: {},
             selectedPlace: {},
-            modals:{
-                newLensModal: false,
-                markerModal: false,
-            },
+            markerModal: false,
+            newPointsModal: false,
+            newLensModal: false,
             modalData:{},
             currentPos: false,
-            isEditMode: false
+            isEditMode: false,
+            currentLens:{}
         };
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
-        this.mapClicked = this.mapClicked.bind(this)
+        this.mapClicked = this.mapClicked.bind(this);
+        this.createNewLens = this.createNewLens.bind(this)
     }
 
     mapClicked(mapProps, map, clickEvent) {
@@ -34,25 +35,51 @@ export class MapView extends Component {
         $('#MarkerModal').modal('open');
     }
 
+    submitNewLens(){
+        Meteor.call('lens.create', $("#newLens").val(), (error, result) => {
+            console.log(result);
+            this.setState({currentLens: result})
+        });
+    }
+
+    submitNewPoint(){
+        var currentPos = this.state.currentPos;
+        Meteor.call('lens.addPoint')
+    }
+
+    addPoint(){
+        this.openModal({}, "newPointsModal");
+        $('#MarkerModal').modal('open');
+    }
+
     openModal(data, modalName){
 
+        console.log(modalName);
         switch (modalName) {
             case "markerModal":
-                this.setState({modalData: data, modals: {markerModal: !this.state.markerModal}});
+                this.setState({modalData: data, markerModal: !this.state.markerModal});
                 break;
             case "newLensModal":
-                this.setState({modalData: data, modals: {newLensModal: !this.state.newLensModal}});
+                console.log("newLensModal");
+                this.setState({modalData: {}, newLensModal: !this.state.newLensModal});
+                break;
+            case "newPointsModal":
+                this.setState({modalData: {}, newPointsModal: !this.state.newPointsModal});
                 break;
         }
+        console.log(this.state.newLensModal);
     }
 
     closeModal(modalName){
         switch (modalName) {
             case "markerModal":
-                this.setState({modals: {markerModal: false}});
+                this.setState({newLensModal: false});
                 break;
             case "newLensModal":
-                this.setState({modals: {newLensModal: false}});
+                this.setState({newLensModal: false});
+                break;
+            case "newPointsModal":
+                this.setState({newPointsModal: false});
                 break;
         }
     }
@@ -60,6 +87,7 @@ export class MapView extends Component {
     currentClick(){
         if(this.state.currentPos){
             return <Marker
+                           onClick={this.addPoint.bind(this)}
                            title={"Current Click"}
                            name={"Current Click"}
                            position={{lat: this.state.currentPos[0], lng: this.state.currentPos[1]}} />
@@ -88,8 +116,8 @@ export class MapView extends Component {
             return (
                 <div>
                     <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-plus-square" aria-hidden="true"/></div>
-                    <Modal data={this.state.modalData} isOpen={this.state.modals.newLensModal} onClose={() => this.closeModal("newLensModal")}>
-                        <h1>suhh</h1>
+                    <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal("markerModal")}>
+                        <h1>Clicked Point of Interest</h1>
                     </Modal>
                     <Map
                          google={this.props.google}
@@ -116,8 +144,9 @@ export class MapView extends Component {
         }else{
             return (
                 <div>
-                    <div id="toggleEditor" onClick={this.createNewLens.bind(this)}><i className="fa fa-globe" aria-hidden="true"/></div>
-                    <Modal isOpen={this.state.modals.newLensModal} onClose={() => this.closeModal("newLensModal")}>
+                    <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-plus-square" aria-hidden="true"/></div>
+                    <div id="createLens" onClick={this.createNewLens}><i className="fa fa-globe" aria-hidden="true"/></div>
+                    <Modal isOpen={this.state.newLensModal} onClose={() => this.closeModal("newLensModal")}>
                         <div className="row">
                             <form className="col s12">
                                 <div className="row">
@@ -125,7 +154,20 @@ export class MapView extends Component {
                                         <input id="newLens" type="text" className="validate"/>
                                         <label htmlFor="newLens">Create a new Lens</label>
                                     </div>
-                                    <a className="waves-effect waves-light btn inline-button">button</a>
+                                    <a onClick={this.submitNewLens.bind(this)} className="waves-effect waves-light btn inline-button">Create</a>
+                                </div>
+                            </form>
+                        </div>
+                    </Modal>
+                    <Modal isOpen={this.state.newPointsModal} onClose={() => this.closeModal("newPointsModal")}>
+                        <div className="row">
+                            <form className="col s12">
+                                <div className="row">
+                                    <div className="input-field col s6">
+                                        <input id="newPoint" type="text" className="validate"/>
+                                        <label htmlFor="newPoint">Enter a point name.</label>
+                                    </div>
+                                    <a onClick={this.submitNewPoint.bind(this)} className="waves-effect waves-light btn inline-button">Add</a>
                                 </div>
                             </form>
                         </div>
