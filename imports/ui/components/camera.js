@@ -55,7 +55,7 @@ class Camera extends Component {
 
                     </a-anchor>
                     <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
-                        <a-entity Cursor="fuse: true"
+                        <a-entity Cursor="fuse: true; fuseTimeout: 2500"
                             Position="0 0 -3"
                             Geometry="primitive: ring; radiusInner: 0.03; radiusOuter: 0.04"
                             Material="shader: flat">
@@ -78,7 +78,6 @@ class Camera extends Component {
         const {pois} = this.props;
         const callModal = this.onMarkerClick;
 
-        delete AFRAME.components['cursor-listener'];
         AFRAME.registerComponent('cursor-listener', {
             init: function () {
                 let el = this.el;
@@ -134,6 +133,10 @@ class Camera extends Component {
                     break;
             }
         });
+    }
+
+    componentWillUnmount() {
+        delete AFRAME.components['cursor-listener'];
     }
 
 }
