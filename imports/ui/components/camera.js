@@ -1,11 +1,31 @@
 import React, {Component} from 'react'
 
 import {Link} from 'react-router-dom';
+import MarkerModal from "./markerModal";
 
 class Camera extends Component {
 
     constructor(props){
         super(props);
+        this.state = {
+            markerModal: false,
+            modalData:{},
+        };
+        this.onMarkerClick = this.onMarkerClick.bind(this)
+    }
+
+    onMarkerClick(data) {
+        alert(data.name)
+        this.openModal(data);
+        $('#MarkerModal').modal('open');
+    }
+
+    openModal(data){
+        this.setState({modalData: data, markerModal: !this.state.markerModal});
+    }
+
+    closeModal(){
+        this.setState({markerModal: false});
     }
 
     render(){
@@ -14,6 +34,7 @@ class Camera extends Component {
 
         return (
             <div>
+                <MarkerModal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
                 <div id="location_info">
                     <div>
                         coords: <span id="crd_longitude"/>, <span id="crd_latitude"/>
@@ -37,9 +58,10 @@ class Camera extends Component {
                             Material="shader: flat">
                         </a-entity>
                     </a-camera>
-                        {pois.map((poi)=>{
-                            return <a-tetrahedron id={poi.lat+poi.long} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
-                        })}
+
+                    {pois.map((poi)=>{
+                        return <a-tetrahedron id={poi.lat+poi.long} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
+                    })}
                 </a-scene>
             </div>
         );
@@ -47,18 +69,21 @@ class Camera extends Component {
 
     componentDidMount(){
 
+        var onMarkerClick = this.onMarkerClick;
+
         AFRAME.registerComponent('cursor-listener', {
           init: function () {
-            this.el.addEventListener('fusing', function (evt) {
-              alert('I was clicked at: ', evt.detail);
+            let el = this.el;
+            el.addEventListener('mouseenter', function (evt) {
+              el.setAttribute('color', 'purple')
             });
             el.addEventListener('mouseleave', function (evt) {
               el.setAttribute('color', 'green')
             })
             el.addEventListener('click', function (evt) {
-              $("#MarkerModal").modal('open')
+              onMarkerClick({name: 'asuh'})
             })
-          }});
+          }})
                 
         var camera = document.getElementById('camera');
 
