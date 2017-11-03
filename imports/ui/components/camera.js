@@ -86,6 +86,7 @@ class Camera extends Component {
                     })
                 }
             });
+            aframeRegistered = true;
         }
                 
         let camera = document.getElementById('camera');
