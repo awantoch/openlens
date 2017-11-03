@@ -18,12 +18,12 @@ class Modal extends Component {
         if (this.props.isOpen === false) {
             return null;
         } else {
-            const {data} = this.props;
+            const {poi} = this.props;
             return (
                 <div id="MarkerModal" className="modal">
                     <div className="modal-content">
-                        <h4>{data.name}</h4>
-                        <p>{data.text}</p>
+                        <h4>{poi.data.name}</h4>
+                        <p>{poi.data.text}</p>
                     </div>
                     <div className="modal-footer">
                         <a onClick={e => this.close(e)} className="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
