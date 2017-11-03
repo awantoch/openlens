@@ -115,7 +115,7 @@ export class MapView extends Component {
         if(!this.state.isEditMode){
             return (
                 <div>
-                    <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-plus-square" aria-hidden="true"/></div>
+                    <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-globe" aria-hidden="true"/></div>
                     <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal("markerModal")}>
                         <h1>Clicked Point of Interest</h1>
                     </Modal>
@@ -144,8 +144,8 @@ export class MapView extends Component {
         }else{
             return (
                 <div>
-                    <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-plus-square" aria-hidden="true"/></div>
-                    <div id="createLens" onClick={this.createNewLens}><i className="fa fa-globe" aria-hidden="true"/></div>
+                    <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-globe" aria-hidden="true"/></div>
+                    <div id="createLens" onClick={this.createNewLens}><i className="fa fa-plus-square" aria-hidden="true"/></div>
                     <Modal isOpen={this.state.newLensModal} onClose={() => this.closeModal("newLensModal")}>
                         <div className="row">
                             <form className="col s12">
