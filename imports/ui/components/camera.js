@@ -58,7 +58,7 @@ class Camera extends Component {
                     </a-camera>
 
                     {pois ? pois.map((poi)=>{
-                        return <a-box id={poi._id} cursor-listener color="#FF926B" height="4" width="8" key={poi._id} gps-Place={"longitude: " + poi.loc.coordinates[0] + "; latitude: " + poi.loc.coordinates[1]}></a-box>
+                        return <a-sphere id={poi._id} cursor-listener color="#FF926B" radius="4" key={poi._id} gps-Place={"longitude: " + poi.loc.coordinates[0] + "; latitude: " + poi.loc.coordinates[1]}></a-sphere>
                     }) : null}
                 </a-scene>
             </div>
@@ -81,7 +81,7 @@ class Camera extends Component {
                         el.setAttribute('color', 'green')
                     })
                     el.addEventListener('click', function (evt) {
-                        let poi = _.findWhere(pois, {_id: el.getAttribute('id')})
+                        let poi = _.findWhere(pois, {_id: el.getAttribute('id')});
                         callModal(poi)
                     })
                 }
