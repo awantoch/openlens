@@ -68,7 +68,7 @@ class Camera extends Component {
 
     componentDidMount(){
 
-        var comp = this;
+        var onMarkerClick = this.onMarkerClick;
 
         AFRAME.registerComponent('cursor-listener', {
           init: function () {
@@ -80,7 +80,7 @@ class Camera extends Component {
               el.setAttribute('color', 'green')
             })
             el.addEventListener('click', function (evt) {
-              comp.onMarkerClick.bind(this, {name: 'asuh'})
+              onMarkerClick.bind({name: 'asuh'})
             })
           }})
                 
