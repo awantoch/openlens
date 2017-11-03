@@ -78,8 +78,7 @@ class Camera extends Component {
         const {pois} = this.props;
         const callModal = this.onMarkerClick;
 
-        if (aframeRegistered) delete AFRAME.components['cursor-listener'];
-
+        delete AFRAME.components['cursor-listener'];
         AFRAME.registerComponent('cursor-listener', {
             init: function () {
                 let el = this.el;
@@ -95,8 +94,6 @@ class Camera extends Component {
                 })
             }
         });
-        
-        aframeRegistered = true;
                 
         let camera = document.getElementById('camera');
 

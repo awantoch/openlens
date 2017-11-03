@@ -5,11 +5,10 @@ import MapView from '../components/map.js';
 
 const composer = (props, onData) => {
     if (Meteor.subscribe('points').ready()) {
-        const loc = currentLocation.slice(0);
         const pois = Points.find({loc: { $near: {
                                            $geometry: {
                                               type: "Point" ,
-                                              coordinates: [ loc[0] , loc[1] ]
+                                              coordinates: [ currentLocation[0] , currentLocation[1] ]
                                            },
                                            $maxDistance: 1000
                                          }
