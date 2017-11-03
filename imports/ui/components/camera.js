@@ -1,7 +1,7 @@
 import React, {Component} from 'react'
 
 import {Link} from 'react-router-dom';
-import MarkerModal from "./markerModal";
+import Modal from "./markerModal";
 
 class Camera extends Component {
 
@@ -29,7 +29,7 @@ class Camera extends Component {
 
         return (
             <div>
-                <MarkerModal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
+                <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
                 <div id="location_info">
                     <div>
                         coords: <span id="crd_longitude"/>, <span id="crd_latitude"/>
@@ -78,8 +78,8 @@ class Camera extends Component {
                         el.setAttribute('color', 'green')
                     })
                     el.addEventListener('click', function (evt) {
-                        //let poi = _.findWhere(pois, {_id: el.getAttribute('id')})
-                        callModal({data: {name: 'whhhhaaaat'}})
+                        let poi = _.findWhere(pois, {_id: el.getAttribute('id')})
+                        callModal(poi)
                     })
                 }
             });
