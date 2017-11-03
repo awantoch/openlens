@@ -15,12 +15,8 @@ class Camera extends Component {
     }
 
     onMarkerClick(data) {
-        this.openModal(data);
-        $('#MarkerModal').modal('open');
-    }
-
-    openModal(data){
         this.setState({modalData: data, markerModal: !this.state.markerModal});
+        $('#MarkerModal').modal('open');
     }
 
     closeModal(){
@@ -82,9 +78,8 @@ class Camera extends Component {
                         el.setAttribute('color', 'green')
                     })
                     el.addEventListener('click', function (evt) {
-                        let poi = _.findWhere(pois, {_id: el.getAttribute('id')})
-                        alert(poi.data.name)
-                        callModal(poi)
+                        //let poi = _.findWhere(pois, {_id: el.getAttribute('id')})
+                        callModal({data: {name: 'whhhhaaaat'}})
                     })
                 }
             });
