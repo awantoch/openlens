@@ -48,7 +48,12 @@ class Camera extends Component {
                     </div>
                 </div>
 
-                <a-scene embedded artoolkit='sourceType: webcam;'>
+                <a-scene embedded arjs='trackingMethod: best;' debugUIEnabled="false" artoolkit='sourceType: webcam;'>
+                    <a-anchor hit-testing-enabled='true'>
+
+                        <a-portal-door url='https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg' position='0 0 0' scale='0.7 1 0.7' rotation='0 90 0'/>
+
+                    </a-anchor>
                     <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
                         <a-entity Cursor="fuse: false"
                             Position="0 0 -3"
@@ -56,6 +61,9 @@ class Camera extends Component {
                             Material="shader: flat">
                         </a-entity>
                     </a-camera>
+
+
+
 
                     {pois ? pois.map((poi)=>{
                         return <a-box id={poi._id} cursor-listener color="#FF926B" height="4" width="8" key={poi._id} gps-Place={"longitude: " + poi.loc.coordinates[0] + "; latitude: " + poi.loc.coordinates[1]}></a-box>

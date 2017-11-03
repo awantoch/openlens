@@ -9,6 +9,8 @@
     <script src="https://aframe.io/releases/0.6.1/aframe.min.js"></script>
     <script src="https://jeromeetienne.github.io/AR.js/aframe/build/aframe-ar.min.js"></script>
     <script>THREEx.ArToolkitContext.baseURL = 'https://jeromeetienne.github.io/AR.js/three.js/'</script>
+    <script src='/js/aframe-portal-door.js'></script>
+    <script src='/js/threex-portal-door.js'></script>
     <script>
         function getLocation() {
             if (navigator.geolocation) {
@@ -44,7 +46,7 @@
         }
 
         body {
-            background-color: rgba(0,0,0,0.3) !important;
+            background-color: rgba(0, 0, 0, 0.8) !important;
             margin: 0px;
             overflow: hidden;
         }
@@ -137,8 +139,29 @@
         }
 
         .inline-button{
-            margin-top: 20px;
+            margin-top: 45px;
         }
+
+        .home-banner{
+            position: relative;
+            height: 40vh;
+            text-align: center;
+        }
+
+        .home-text{
+            padding-top: 45px;
+        }
+        .home-button{
+            position: absolute;
+            bottom: 10px;
+            left: 0;
+            right: 0;
+            margin: 0 auto;
+            font-size: 50px;
+            display: block;
+            color: ghostwhite;
+        }
+
     </style>
 </head>
 

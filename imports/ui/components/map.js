@@ -73,7 +73,7 @@ export class MapView extends Component {
     closeModal(modalName){
         switch (modalName) {
             case "markerModal":
-                this.setState({newLensModal: false});
+                this.setState({markerModal: false});
                 break;
             case "newLensModal":
                 this.setState({newLensModal: false});
