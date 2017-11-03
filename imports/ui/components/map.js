@@ -123,19 +123,19 @@ export class MapView extends Component {
                          google={this.props.google}
                          style={style}
                          initialCenter={{
-                             lat: 40.258642,
-                             lng: -76.878926
+                             lat: currentLocation[1],
+                             lng: currentLocation[0]
                          }}
                          zoom={18}
                          mapType={"Satellite"}
                          onClick={this.mapClicked}
                     >
                         {pois.map((poi)=>{
-                            return <Marker key={poi.lat+poi.long}
+                            return <Marker key={poi._id}
                                            onClick={this.onMarkerClick.bind(this, poi)}
-                                           title={poi.name}
-                                           name={poi.name}
-                                           position={{lat: poi.lat, lng: poi.long}} />
+                                           title={poi.data.name}
+                                           name={poi.data.name}
+                                           position={{lat: poi.loc.coordinates[1], lng: poi.loc.coordinates[0]}} />
                         })}
 
                     </Map>
@@ -176,8 +176,8 @@ export class MapView extends Component {
                          google={this.props.google}
                          style={style}
                          initialCenter={{
-                             lat: 40.258642,
-                             lng: -76.878926
+                             lat: currentLocation[1],
+                             lng: currentLocation[0]
                          }}
                          zoom={18}
                          mapType={"Satellite"}
