@@ -12,13 +12,18 @@ export class MapView extends Component {
             selectedPlace: {},
             markerModal: false,
             modalData:{},
+            currentPos: false,
+            mapEditor: false
         };
         this.openModal = this.openModal.bind(this);
         this.closeModal = this.closeModal.bind(this);
+        this.mapClicked = this.mapClicked.bind(this)
     }
 
-    onMapClicked(){
-        console.log("Clicked!")
+    mapClicked(mapProps, map, clickEvent) {
+        var position = clickEvent.latLng;
+        var latLng = [position.lat(), position.lng()];
+        this.setState({currentPos: latLng})
     }
 
     onMarkerClick(data) {
@@ -34,6 +39,15 @@ export class MapView extends Component {
         this.setState({markerModal: false});
     }
 
+    currentClick(){
+        if(this.state.currentPos){
+            return <Marker
+                           title={"Current Click"}
+                           name={"Current Click"}
+                           position={{lat: this.state.currentPos[0], lng: this.state.currentPos[1]}} />
+        }
+    }
+
     render() {
 
         const style = {
@@ -46,7 +60,7 @@ export class MapView extends Component {
         return (
             <div>
                 <MarkerModal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
-                <Map
+                <Map id="map"
                     google={this.props.google}
                     style={style}
                     initialCenter={{
@@ -55,7 +69,7 @@ export class MapView extends Component {
                     }}
                     zoom={18}
                     mapType={"Satellite"}
-                    onClick={this.onMapClicked}
+                    onClick={this.mapClicked}
                 >
 
                 {pois.map((poi)=>{
@@ -65,6 +79,8 @@ export class MapView extends Component {
                         name={poi.name}
                         position={{lat: poi.lat, lng: poi.long}} />
                 })}
+
+                {this.currentClick()}
 
                 </Map>
             </div>
