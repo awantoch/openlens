@@ -23,7 +23,7 @@ class MarkerModal extends Component {
                 <div id="MarkerModal" className="modal">
                     <div className="modal-content">
                         <h4>{data.name}</h4>
-                        <p>{data.name}</p>
+                        <p>{data.text}</p>
                     </div>
                     <div className="modal-footer">
                         <a onClick={e => this.close(e)} className="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
