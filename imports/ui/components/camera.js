@@ -80,7 +80,7 @@ class Camera extends Component {
               el.setAttribute('color', 'green')
             })
             el.addEventListener('click', function (evt) {
-              comp.onMarkerClick(pois[0])
+              comp.onMarkerClick.bind(this, {name: 'asuh'})
             })
           }})
                 
