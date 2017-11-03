@@ -55,7 +55,7 @@ class Camera extends Component {
 
                     </a-anchor>
                     <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
-                        <a-entity Cursor="fuse: false"
+                        <a-entity Cursor="fuse: true"
                             Position="0 0 -3"
                             Geometry="primitive: ring; radiusInner: 0.03; radiusOuter: 0.04"
                             Material="shader: flat">
