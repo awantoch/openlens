@@ -1,11 +1,14 @@
 import {Meteor} from 'meteor/meteor';
 import {HTTP} from 'meteor/http';
 import {Lenses, Points} from '/lib/collections';
+import { Random } from 'meteor/random'
 
 Meteor.methods({
 
     'lens.create'(name){
-        Lenses.insert({name: name, points: {}});
+        let id = Random.id;
+            Lenses.insert({_id: id, name: name, points: {}, owner: this.userId(), members:{}});
+        return id;
     },
 
     'lens.addPoint'(lensId, data, lng, lat){
