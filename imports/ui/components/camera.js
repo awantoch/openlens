@@ -52,7 +52,7 @@ class Camera extends Component {
                     <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
                         <a-entity Cursor="fuse: false"
                             Position="0 0 -3"
-                            Geometry="primitive: ring; radiusInner: 0.086; radiusOuter: 0.09"
+                            Geometry="primitive: ring; radiusInner: 0.05; radiusOuter: 0.06"
                             Material="shader: flat">
                         </a-entity>
                     </a-camera>
