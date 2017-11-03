@@ -10,7 +10,10 @@ export class MapView extends Component {
         this.state = {
             activeMarker: {},
             selectedPlace: {},
-            markerModal: false,
+            modals:{
+                newLensModal: false,
+                markerModal: false,
+            },
             modalData:{},
             currentPos: false,
             isEditMode: false
@@ -27,16 +30,31 @@ export class MapView extends Component {
     }
 
     onMarkerClick(data) {
-        this.openModal(data);
+        this.openModal(data, "markerModal");
         $('#MarkerModal').modal('open');
     }
 
-    openModal(data){
-        this.setState({modalData: data, markerModal: !this.state.markerModal});
+    openModal(data, modalName){
+
+        switch (modalName) {
+            case "markerModal":
+                this.setState({modalData: data, modals: {markerModal: !this.state.markerModal}});
+                break;
+            case "newLensModal":
+                this.setState({modalData: data, modals: {newLensModal: !this.state.newLensModal}});
+                break;
+        }
     }
 
-    closeModal(){
-        this.setState({markerModal: false});
+    closeModal(modalName){
+        switch (modalName) {
+            case "markerModal":
+                this.setState({modals: {markerModal: false}});
+                break;
+            case "newLensModal":
+                this.setState({modals: {newLensModal: false}});
+                break;
+        }
     }
 
     currentClick(){
@@ -49,7 +67,11 @@ export class MapView extends Component {
     }
 
     toggleEditor(){
-        this.setState({isEditMode: !this.state.isEditMode})
+        this.setState({isEditMode: !this.state.isEditMode});
+    }
+
+    createNewLens(){
+        this.openModal({}, "newLensModal");
     }
 
     render() {
@@ -66,7 +88,9 @@ export class MapView extends Component {
             return (
                 <div>
                     <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-plus-square" aria-hidden="true"/></div>
-                    <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
+                    <Modal data={this.state.modalData} isOpen={this.state.modals.newLensModal} onClose={() => this.closeModal("newLensModal")}>
+                        <h1>suhh</h1>
+                    </Modal>
                     <Map
                          google={this.props.google}
                          style={style}
@@ -86,16 +110,26 @@ export class MapView extends Component {
                                            position={{lat: poi.lat, lng: poi.long}} />
                         })}
 
-                        {this.currentClick()}
-
                     </Map>
                 </div>
             );
         }else{
             return (
                 <div>
-                    <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-plus-square" aria-hidden="true"/></div>
-                    <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
+                    <div id="toggleEditor" onClick={this.createNewLens.bind(this)}><i className="fa fa-globe" aria-hidden="true"/></div>
+                    <Modal isOpen={this.state.modals.newLensModal} onClose={() => this.closeModal("newLensModal")}>
+                        <div className="row">
+                            <form className="col s12">
+                                <div className="row">
+                                    <div className="input-field col s6">
+                                        <input id="newLens" type="text" className="validate"/>
+                                        <label htmlFor="newLens">Create a new Lens</label>
+                                    </div>
+                                    <a className="waves-effect waves-light btn inline-button">button</a>
+                                </div>
+                            </form>
+                        </div>
+                    </Modal>
                     <Map
                          google={this.props.google}
                          style={style}
