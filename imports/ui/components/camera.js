@@ -6,6 +6,25 @@ class Camera extends Component {
 
     constructor(props){
         super(props);
+        this.state = {
+            markerModal: false,
+            modalData:{},
+        };
+        this.openModal = this.openModal.bind(this);
+        this.closeModal = this.closeModal.bind(this);
+    }
+
+    onMarkerClick(data) {
+        this.openModal(data);
+        $('#MarkerModal').modal('open');
+    }
+
+    openModal(data){
+        this.setState({modalData: data, markerModal: !this.state.markerModal});
+    }
+
+    closeModal(){
+        this.setState({markerModal: false});
     }
 
     render(){
@@ -14,6 +33,7 @@ class Camera extends Component {
 
         return (
             <div>
+                <MarkerModal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
                 <div id="location_info">
                     <div>
                         coords: <span id="crd_longitude"/>, <span id="crd_latitude"/>
@@ -38,7 +58,7 @@ class Camera extends Component {
                     </a-entity>
                 </a-camera>
                     {pois.map((poi)=>{
-                        return <a-tetrahedron id={poi.lat+poi.long} data-name={poi.name} data-body={poi.name} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
+                        return <a-tetrahedron id={poi.lat+poi.long} cursor-listener color="#FF926B" radius="3" key={poi.name} gps-Place={"longitude: " + poi.long + "; latitude: " + poi.lat}></a-tetrahedron>
                     })}
                 </a-scene>
             </div>
@@ -46,6 +66,8 @@ class Camera extends Component {
     }
 
     componentDidMount(){
+
+        var comp = this;
 
         AFRAME.registerComponent('cursor-listener', {
           init: function () {
@@ -57,7 +79,7 @@ class Camera extends Component {
               el.setAttribute('color', 'green')
             })
             el.addEventListener('click', function (evt) {
-              $("#MarkerModal").modal('open')
+              comp.onMarkerClick(pois[0])
             })
           }})
                 
