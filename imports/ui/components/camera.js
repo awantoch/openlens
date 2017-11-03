@@ -9,13 +9,13 @@ class Camera extends Component {
         super(props);
         this.state = {
             markerModal: false,
-            modalData:{},
+            poi: {}
         };
         this.onMarkerClick = this.onMarkerClick.bind(this)
     }
 
     onMarkerClick(data) {
-        this.setState({modalData: data, markerModal: !this.state.markerModal});
+        this.setState({poi: data, markerModal: !this.state.markerModal});
         $('#MarkerModal').modal('open');
     }
 
@@ -29,7 +29,10 @@ class Camera extends Component {
 
         return (
             <div>
-                <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
+                <Modal isOpen={this.state.markerModal} onClose={() => this.closeModal()}>
+                    <h5 className="header">{this.state.poi.data && this.state.poi.data.name}</h5>
+                    <p>{this.state.poi.data && this.state.poi.data.text}</p>
+                </Modal>
                 <div id="location_info">
                     <div>
                         coords: <span id="crd_longitude"/>, <span id="crd_latitude"/>
