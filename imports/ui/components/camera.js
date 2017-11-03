@@ -9,13 +9,13 @@ class Camera extends Component {
         super(props);
         this.state = {
             markerModal: false,
-            modalData:{},
+            poi: {}
         };
         this.onMarkerClick = this.onMarkerClick.bind(this)
     }
 
     onMarkerClick(data) {
-        this.setState({modalData: data, markerModal: !this.state.markerModal});
+        this.setState({poi: data, markerModal: !this.state.markerModal});
         $('#MarkerModal').modal('open');
     }
 
@@ -29,7 +29,10 @@ class Camera extends Component {
 
         return (
             <div>
-                <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal()}/>
+                <Modal isOpen={this.state.markerModal} onClose={() => this.closeModal()}>
+                    <h5 className="header">{this.state.poi.data && this.state.poi.data.name}</h5>
+                    <p>{this.state.poi.data && this.state.poi.data.text}</p>
+                </Modal>
                 <div id="location_info">
                     <div>
                         coords: <span id="crd_longitude"/>, <span id="crd_latitude"/>
@@ -49,13 +52,13 @@ class Camera extends Component {
                     <a-camera id="camera" user-height="1.6" gps-position compass-rotation>
                         <a-entity Cursor="fuse: false"
                             Position="0 0 -3"
-                            Geometry="primitive: ring; radiusInner: 0.086; radiusOuter: 0.09"
+                            Geometry="primitive: ring; radiusInner: 0.03; radiusOuter: 0.04"
                             Material="shader: flat">
                         </a-entity>
                     </a-camera>
 
                     {pois ? pois.map((poi)=>{
-                        return <a-tetrahedron id={poi._id} cursor-listener color="#FF926B" radius="3" key={poi._id} gps-Place={"longitude: " + poi.loc.coordinates[0] + "; latitude: " + poi.loc.coordinates[1]}></a-tetrahedron>
+                        return <a-box id={poi._id} cursor-listener color="#FF926B" height="4" width="8" key={poi._id} gps-Place={"longitude: " + poi.loc.coordinates[0] + "; latitude: " + poi.loc.coordinates[1]}></a-box>
                     }) : null}
                 </a-scene>
             </div>
@@ -67,7 +70,7 @@ class Camera extends Component {
         const {pois} = this.props;
         const callModal = this.onMarkerClick;
 
-        try {
+        if (!aframeRegistered) {
             AFRAME.registerComponent('cursor-listener', {
                 init: function () {
                     let el = this.el;
@@ -83,8 +86,7 @@ class Camera extends Component {
                     })
                 }
             });
-        } catch (Error) {
-            // catch when routing tries to reregister
+            aframeRegistered = true;
         }
                 
         let camera = document.getElementById('camera');
@@ -114,12 +116,12 @@ class Camera extends Component {
                     camera_p_z.innerText = evt.detail.newData.z;
                     if(gpsPosition){
                         if(gpsPosition.crd){
-                            crd_longitude.innerText = gpsPosition.crd.longitude;
-                            crd_latitude.innerText = gpsPosition.crd.latitude;
+                            crd_longitude.innerText, currentLocation[0] = gpsPosition.crd.longitude;
+                            crd_latitude.innerText, currentLocation[1] = gpsPosition.crd.latitude;
                         }
                         if(gpsPosition.zeroCrd){
-                            zero_crd_longitude.innerText = gpsPosition.zeroCrd.longitude;
-                            zero_crd_latitude.innerText = gpsPosition.zeroCrd.latitude;
+                            zero_crd_longitude.innerText, currentLocation[0] = gpsPosition.zeroCrd.longitude;
+                            zero_crd_latitude.innerText, currentLocation[1] = gpsPosition.zeroCrd.latitude;
                         }
                     }
 
