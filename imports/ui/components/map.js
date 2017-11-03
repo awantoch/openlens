@@ -13,7 +13,7 @@ export class MapView extends Component {
             markerModal: false,
             newPointsModal: false,
             newLensModal: false,
-            modalData:{},
+            poi:{},
             currentPos: false,
             isEditMode: false,
             currentLens:{}
@@ -57,14 +57,14 @@ export class MapView extends Component {
         console.log(modalName);
         switch (modalName) {
             case "markerModal":
-                this.setState({modalData: data, markerModal: !this.state.markerModal});
+                this.setState({poi: data, markerModal: !this.state.markerModal});
                 break;
             case "newLensModal":
                 console.log("newLensModal");
-                this.setState({modalData: {}, newLensModal: !this.state.newLensModal});
+                this.setState({poi: {}, newLensModal: !this.state.newLensModal});
                 break;
             case "newPointsModal":
-                this.setState({modalData: {}, newPointsModal: !this.state.newPointsModal});
+                this.setState({poi: {}, newPointsModal: !this.state.newPointsModal});
                 break;
         }
         console.log(this.state.newLensModal);
@@ -116,8 +116,9 @@ export class MapView extends Component {
             return (
                 <div>
                     <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-globe" aria-hidden="true"/></div>
-                    <Modal data={this.state.modalData} isOpen={this.state.markerModal} onClose={() => this.closeModal("markerModal")}>
-                        <h1>Clicked Point of Interest</h1>
+                    <Modal isOpen={this.state.markerModal} onClose={() => this.closeModal("markerModal")}>
+                        <h5>{this.state.poi.data.name}</h5>
+                        <p>{this.state.poi.data.text}</p>
                     </Modal>
                     <Map
                          google={this.props.google}
