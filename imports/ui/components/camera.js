@@ -1,6 +1,7 @@
 import React, {Component} from 'react'
 
 import {Link} from 'react-router-dom';
+import MarkerModal from "./markerModal";
 
 class Camera extends Component {
 
