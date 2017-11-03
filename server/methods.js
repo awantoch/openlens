@@ -8,8 +8,8 @@ Meteor.methods({
         Lenses.insert({name: name, points: {}});
     },
 
-    'lens.addPoint'(lensId, name, lng, lat){
-        Points.insert({lensId: lensId, loc: {type: "Point", coordinates: [lng, lat]}, data: {name: name}});
+    'lens.addPoint'(lensId, data, lng, lat){
+        Points.insert({lensId: lensId, loc: {type: "Point", coordinates: [lng, lat]}, data: data});
     },
 
     'lens.delPoint'(id){
