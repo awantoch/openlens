@@ -76,13 +76,14 @@ class Camera extends Component {
                 init: function () {
                     let el = this.el;
                     el.addEventListener('mouseenter', function (evt) {
-                      el.setAttribute('color', 'purple')
+                        el.setAttribute('color', 'purple')
                     });
                     el.addEventListener('mouseleave', function (evt) {
-                      el.setAttribute('color', 'green')
+                        el.setAttribute('color', 'green')
                     })
                     el.addEventListener('click', function (evt) {
-                      callModal(_.findWhere(pois, {_id: el.getAttribute('id')}))
+                        let poi = _.findWhere(pois, {_id: el.getAttribute('id')})
+                        callModal(poi)
                     })
                 }
             });
