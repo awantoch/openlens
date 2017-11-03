@@ -13,7 +13,7 @@ export class MapView extends Component {
             markerModal: false,
             newPointsModal: false,
             newLensModal: false,
-            poi:{},
+            poi: {},
             currentPos: false,
             isEditMode: false,
             currentLens:{}
@@ -117,8 +117,8 @@ export class MapView extends Component {
                 <div>
                     <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-globe" aria-hidden="true"/></div>
                     <Modal isOpen={this.state.markerModal} onClose={() => this.closeModal("markerModal")}>
-                        <h5>{this.state.poi.data.name}</h5>
-                        <p>{this.state.poi.data.text}</p>
+                        <h5>{this.state.poi.data && this.state.poi.data.name}</h5>
+                        <p>{this.state.poi.data && this.state.poi.data.text}</p>
                     </Modal>
                     <Map
                          google={this.props.google}
@@ -131,13 +131,13 @@ export class MapView extends Component {
                          mapType={"Satellite"}
                          onClick={this.mapClicked}
                     >
-                        {pois.map((poi)=>{
+                        {pois ? pois.map((poi)=>{
                             return <Marker key={poi._id}
                                            onClick={this.onMarkerClick.bind(this, poi)}
                                            title={poi.data.name}
                                            name={poi.data.name}
                                            position={{lat: poi.loc.coordinates[1], lng: poi.loc.coordinates[0]}} />
-                        })}
+                        }) : null}
 
                     </Map>
                 </div>
