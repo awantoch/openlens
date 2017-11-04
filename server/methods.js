@@ -6,8 +6,8 @@ import { Random } from 'meteor/random'
 Meteor.methods({
 
     'lens.create'(name){
-        let id = Random.id;
-            Lenses.insert({_id: id, name: name, points: {}, owner: this.userId(), members:{}});
+        let id = Random.id();
+            Lenses.insert({_id: id, name: name, points: {}, owner: Meteor.userId(), members:{}});
         return id;
     },
 

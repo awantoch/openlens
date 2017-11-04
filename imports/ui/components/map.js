@@ -36,10 +36,10 @@ export class MapView extends Component {
     }
 
     submitNewLens(){
-        Meteor.call('lens.create', $("#newLens").val(), (error, result) => {
+        Meteor.call('lens.create', $("#newLens").val(), function(error, result){
             console.log(result);
-            this.setState({currentLens: result})
-        });
+            Session.set('currentLens', result);
+        })
     }
 
     submitNewPoint(){
@@ -61,13 +61,12 @@ export class MapView extends Component {
                 break;
             case "newLensModal":
                 console.log("newLensModal");
-                this.setState({poi: {}, newLensModal: !this.state.newLensModal});
+                this.setState({newLensModal: !this.state.newLensModal});
                 break;
             case "newPointsModal":
                 this.setState({poi: {}, newPointsModal: !this.state.newPointsModal});
                 break;
         }
-        console.log(this.state.newLensModal);
     }
 
     closeModal(modalName){
@@ -100,6 +99,9 @@ export class MapView extends Component {
 
     createNewLens(){
         this.openModal({}, "newLensModal");
+        setTimeout(function(){
+            $('#MarkerModal').modal('open');
+        }, 200);
     }
 
     render() {
@@ -113,6 +115,7 @@ export class MapView extends Component {
         const isEditMode = this.state.isEditMode === true;
 
         if(!this.state.isEditMode){
+            console.log(this.state.newLensModal);
             return (
                 <div>
                     <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-globe" aria-hidden="true"/></div>
@@ -191,6 +194,12 @@ export class MapView extends Component {
             );
         }
 
+    }
+    componentWillMount(){
+        if(Session.get('currentLens')){
+            this.setState({currentLens: Session.get('currentLens')});
+            console.log(Session.get('currentLens'))
+        }
     }
 }
 
