@@ -38,13 +38,14 @@ export class MapView extends Component {
     submitNewLens(){
         Meteor.call('lens.create', $("#newLens").val(), function(error, result){
             console.log(result);
-            Session.set('currentLens', result);
+            Session.set('currentLens', {id: result, name: $("#newLens").val()});
         })
     }
 
     submitNewPoint(){
-        var currentPos = this.state.currentPos;
-        Meteor.call('lens.addPoint')
+        var session = Session.get('currentLens');
+        console.log(session);
+        Meteor.call('lens.addPoint', session.id, {name: session.name}, this.state.currentPos[1], this.state.currentPos[0])
     }
 
     addPoint(){
