@@ -8,7 +8,7 @@ const composer = (props, onData) => {
         const pois = Points.find({loc: { $near: {
                                            $geometry: {
                                               type: "Point" ,
-                                              coordinates: [ currentLocation[0] , currentLocation[1] ]
+                                              coordinates: [ Session.get('currentLocation')[0] , Session.get('currentLocation')[1] ]
                                            },
                                            $maxDistance: 1000
                                          }

@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import IndexPage from './index.js';
 import Camera from '../containers/camera.js'
+import SideNav from '../containers/sidenav.js'
 import Map from '../containers/map.js';
 import Settings from './settings.js';
 import Login from './login.js';
@@ -32,24 +33,6 @@ const Header = () => ({
         );
     },
 });
-
-const SideNav = () => ({
-	render() {
-		return (
-			<ul id="nav-mobile" className="side-nav">
-				<li className="subheader"><i className="fa fa-search-plus" aria-hidden="true" style={{padding: '10px'}}></i>Quick Lenses</li>
-				<li><a href="#">Events</a></li>
-				<li><a href="#">Transport</a></li>
-				<li><a href="#">Shopping</a></li>
-				<li><a href="#">Adventures</a></li>
-				<li><div className="divider"></div></li>
-
-				{Meteor.user() && <li className="hide-toggle"><Link to="/settings">Settings</Link></li>}
-				<li className="hide-toggle">{Meteor.user() ? <Link to="/logout">Logout</Link> : <Link to="/login">Login/Register</Link>}</li>
-			</ul>
-		)
-	}
-})
 
 class MainLayout extends Component {
 

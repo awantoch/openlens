@@ -5,10 +5,10 @@ import {Points} from '/lib/collections';
 
 const composer = (props, onData) => {
     if (Meteor.subscribe('points').ready()) {
-        const pois = Points.find({loc: { $near: {
+        const pois = Points.find({'lensId': Session.get('navLens') || 'default', loc: { $near: {
                                            $geometry: {
                                               type: "Point" ,
-                                              coordinates: [ currentLocation[0] , currentLocation[1] ]
+                                              coordinates: [ Session.get('currentLocation')[0] , Session.get('currentLocation')[1] ]
                                            },
                                            $maxDistance: 1000
                                          }
