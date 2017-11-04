@@ -38,10 +38,8 @@ const SideNav = () => ({
 		return (
 			<ul id="nav-mobile" className="side-nav">
 				<li className="subheader"><i className="fa fa-search-plus" aria-hidden="true" style={{padding: '10px'}}></i>Quick Lenses</li>
-				<li><a href="#">Events</a></li>
-				<li><a href="#">Transport</a></li>
-				<li><a href="#">Shopping</a></li>
-				<li><a href="#">Adventures</a></li>
+				<li><a>Historical POI</a></li>
+				<li><a>Collisions</a></li>
 				<li><div className="divider"></div></li>
 
 				{Meteor.user() && <li className="hide-toggle"><Link to="/settings">Settings</Link></li>}
