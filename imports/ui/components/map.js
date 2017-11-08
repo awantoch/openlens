@@ -204,7 +204,8 @@ export class MapView extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return nextState.markerModal !== this.state.markerModal
+        return nextState.isEditMode !== this.state.isEditMode
+        || nextState.markerModal !== this.state.markerModal
         || nextState.newLensModal !== this.state.newLensModal
         || nextState.newPointsModal !== this.state.newPointsModal;
     }
