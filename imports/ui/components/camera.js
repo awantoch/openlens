@@ -23,6 +23,27 @@ class Camera extends Component {
         this.setState({markerModal: false});
     }
 
+    attachCursorEvents(){
+        const {pois} = this.props;
+        const callModal = this.onMarkerClick;
+
+        AFRAME.registerComponent('cursor-listener', {
+            init: function () {
+                let el = this.el;
+                el.addEventListener('mouseenter', function (evt) {
+                    el.setAttribute('color', 'purple')
+                });
+                el.addEventListener('mouseleave', function (evt) {
+                    el.setAttribute('color', 'green')
+                })
+                el.addEventListener('click', function (evt) {
+                    let poi = _.findWhere(pois, {_id: el.getAttribute('id')});
+                    callModal(poi)
+                })
+            }
+        });
+    }
+
     render(){
 
         const {pois} = this.props;
@@ -75,24 +96,7 @@ class Camera extends Component {
 
     componentDidMount(){
 
-        const {pois} = this.props;
-        const callModal = this.onMarkerClick;
-
-        AFRAME.registerComponent('cursor-listener', {
-            init: function () {
-                let el = this.el;
-                el.addEventListener('mouseenter', function (evt) {
-                    el.setAttribute('color', 'purple')
-                });
-                el.addEventListener('mouseleave', function (evt) {
-                    el.setAttribute('color', 'green')
-                })
-                el.addEventListener('click', function (evt) {
-                    let poi = _.findWhere(pois, {_id: el.getAttribute('id')});
-                    callModal(poi)
-                })
-            }
-        });
+        this.attachCursorEvents();
                 
         let camera = document.getElementById('camera');
 
@@ -139,6 +143,11 @@ class Camera extends Component {
         delete AFRAME.components['cursor-listener'];
     }
 
+    componendDidUpdate() {
+        delete AFRAME.components['cursor-listener'];
+        this.attachCursorEvents();
+    }
+    
     shouldComponentUpdate(nextProps, nextState) {
         return !_.isEqual(nextState, this.state)
         || !_.isEqual(nextProps, this.props);
