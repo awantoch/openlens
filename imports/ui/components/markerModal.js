@@ -21,6 +21,7 @@ class Modal extends Component {
             window.open("google.navigation:q=" + this.props.loc[1]+","+this.props.loc[0] + "&mode=d" , '_system');
             this.close()
         }else{
+            window.open("google.navigation:q=" + this.props.loc[1]+","+this.props.loc[0] + "&mode=d" , '_system');
             this.close()
         }
     }
@@ -28,7 +29,7 @@ class Modal extends Component {
     renderNavIcon(){
         if (this.props.loc) {
             return (
-                <a onClick={this.launchNav.bind(this)} href={"geo:"+this.props.loc[1]+","+this.props.loc[0]}><i className="modal-action modal-close btn-flat blue lighten-2 fa fa-2x fa-location-arrow" aria-hidden="true"/></a>
+                <a onClick={this.launchNav.bind(this)}><i className="modal-action modal-close btn-flat blue lighten-2 fa fa-2x fa-location-arrow" aria-hidden="true"/></a>
             )
         }
     }
