@@ -128,8 +128,8 @@ export class MapView extends Component {
                          google={this.props.google}
                          style={style}
                          initialCenter={{
-                             lat: currentLocation[1],
-                             lng: currentLocation[0]
+                             lat: Session.get("currentLocation")[1],
+                             lng: Session.get("currentLocation")[0]
                          }}
                          zoom={18}
                          mapType={"Satellite"}

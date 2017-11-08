@@ -8,7 +8,7 @@ import 'materialize-css/dist/css/materialize.css';
 import MainLayout from '../../ui/components/main_layout.jsx';
 
 Meteor.startup(() => {
-	Session.set('navLens', 'historical')
+	Session.set('navLens', 'historical');
     render((
         <MainLayout />
     ), document.getElementById('app'));
