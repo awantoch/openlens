@@ -2,8 +2,7 @@ import React, {Component} from 'react'
 
 class Modal extends Component {
 
-    close(e) {
-        e.preventDefault();
+    close() {
 
         if (this.props.onClose) {
             this.props.onClose()
@@ -13,7 +12,7 @@ class Modal extends Component {
     renderNavIcon(){
         if (this.props.loc) {
             return (
-                <a onClick={e => this.close(e)} href={"https://www.google.com/maps/?q="+this.props.loc[1]+","+this.props.loc[0]}><i className="modal-action modal-close btn-flat blue lighten-2 fa fa-2x fa-location-arrow" aria-hidden="true"></i></a>
+                <a onClick={this.close.bind(this)} href={"https://www.google.com/maps/?q="+this.props.loc[1]+","+this.props.loc[0]}><i className="modal-action modal-close btn-flat blue lighten-2 fa fa-2x fa-location-arrow" aria-hidden="true"></i></a>
             )
         }
     }

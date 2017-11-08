@@ -11,6 +11,10 @@ Meteor.methods({
         return id;
     },
 
+    'lens.getName'(id){
+        return Lenses.insert({_id: id});
+    },
+
     'lens.addPoint'(lensId, data, lng, lat){
         Points.insert({lensId: lensId, loc: {type: "Point", coordinates: [lng, lat]}, data: data});
     },
@@ -34,7 +38,7 @@ Meteor.methods({
 
 
     'fetchHistoricLandmarks'(){
-        try { Lenses.insert({_id: 'historial', name: 'Historical POI', members: [], owner: null})} catch(e){}
+        try { Lenses.insert({_id: 'historical', name: 'Historical POI', members: [], owner: null})} catch(e){}
         HTTP.get('https://data.pa.gov/resource/ug4h-nsj9.json', {params: {'$limit': 5000}}, (err, response) => {
             response.data.forEach(function(obj, index, arr){
                 try{ if (obj.location_1) Points.insert({_id: obj.historicalmarkerid, lensId: 'historical', loc: obj.location_1, data: {name: obj.name, text: obj.markertext}}); } catch(e){}
