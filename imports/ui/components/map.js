@@ -204,7 +204,9 @@ export class MapView extends Component {
     }
 
     shouldComponentUpdate(nextProps, nextState) {
-        return false //nextProps.poi.length !== this.props.length;
+        return nextState.markerModal !== this.state.markerModal
+        || nextState.newLensModal !== this.state.newLensModal
+        || nextState.newPointsModal !== this.state.newPointsModal;
     }
 }
 
