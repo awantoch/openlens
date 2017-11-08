@@ -116,7 +116,6 @@ export class MapView extends Component {
         const isEditMode = this.state.isEditMode === true;
 
         if(!this.state.isEditMode){
-            console.log(this.state.newLensModal);
             return (
                 <div>
                     <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-globe" aria-hidden="true"/></div>
