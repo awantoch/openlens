@@ -4,7 +4,7 @@ import {Points} from '/lib/collections';
 import MapView from '../components/map.js';
 
 const composer = (props, onData) => {
-    if (Meteor.subscribe('points', Session.get('currentLocation').slice(0)).ready()) {
+    if (Meteor.subscribe('points', Session.get('currentLocation')).ready()) {
         const pois = Points.find({'lensId': Session.get('navLens') || 'historical'}).fetch();
         onData(null, {pois});
     }

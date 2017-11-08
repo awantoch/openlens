@@ -202,6 +202,10 @@ export class MapView extends Component {
             console.log(Session.get('currentLens'))
         }
     }
+
+    shouldComponentUpdate(nextProps, nextState) {
+        return false //nextProps.poi.length !== this.props.length;
+    }
 }
 
 export default GoogleApiWrapper({

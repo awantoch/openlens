@@ -139,6 +139,10 @@ class Camera extends Component {
         delete AFRAME.components['cursor-listener'];
     }
 
+    shouldComponentUpdate(nextProps, nextState) {
+        return false //nextProps.poi.length !== this.props.length;
+    }
+
 }
 
 export default Camera;
