@@ -1,3 +1,25 @@
+function getCurrentLocation(){
+    gpsWatcher(function(position){
+        Session.set('currentLocation', [position.coords.longitude, position.coords.latitude]);
+        console.log('location set to ' + [position.coords.longitude, position.coords.latitude]);
+    });
+}
+
+function gpsWatcher(success, error) {
+
+    if(typeof(error) == 'undefined')
+        error = function(err) { console.warn('ERROR('+err.code+'): '+err.message); };
+
+    if (!("geolocation" in navigator)){
+        error({code: 0, message: 'Geolocation is not supported by your browser'});
+        return;
+    }
+
+    return navigator.geolocation.watchPosition(success, error, {enableHighAccuracy: true, maximumAge: 0, timeout: 27000});
+}
+
+getCurrentLocation();
+
 // thanks to 1d10t https://github.com/1d10t
 // src: https://github.com/1d10t/test/blob/16b9a59ec9fcacfaa7b5c485622f21c7f4191fbb/a-frame-webcam-dae.html
 AFRAME.registerComponent('gps-position', {
@@ -34,18 +56,7 @@ AFRAME.registerComponent('gps-position', {
 
     },
 
-    watchGPS: function (success, error) {
-
-        if(typeof(error) == 'undefined')
-            error = function(err) { console.warn('ERROR('+err.code+'): '+err.message); };
-
-        if (!("geolocation" in navigator)){
-            error({code: 0, message: 'Geolocation is not supported by your browser'});
-            return;
-        }
-
-        return navigator.geolocation.watchPosition(success, error, {enableHighAccuracy: true, maximumAge: 0, timeout: 27000});
-    },
+    watchGPS: gpsWatcher,
 
     updatePosition: function () {
 

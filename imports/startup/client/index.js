@@ -8,7 +8,6 @@ import 'materialize-css/dist/css/materialize.css';
 import MainLayout from '../../ui/components/main_layout.jsx';
 
 Meteor.startup(() => {
-	Session.set('currentLocation', [-76.880345, 40.261929]);
 	Session.set('navLens', 'historical')
     render((
         <MainLayout />
