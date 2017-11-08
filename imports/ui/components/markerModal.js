@@ -18,7 +18,7 @@ class Modal extends Component {
         let isAndroid = ua.indexOf("android") > -1;
         if(isAndroid) {
             alert("Android Gps");
-            window.open("google.navigation:q=23.3728831,85.3372199&mode=d" , '_system');
+            window.open("google.navigation:q=" + this.props.loc[1]+","+this.props.loc[0] + "&mode=d" , '_system');
             this.close()
         }else{
             this.close()
