@@ -17,7 +17,6 @@ class Modal extends Component {
         let ua = navigator.userAgent.toLowerCase();
         let isAndroid = ua.indexOf("android") > -1;
         if(isAndroid) {
-            alert("Android Gps");
             window.open("google.navigation:q=" + this.props.loc[1]+","+this.props.loc[0] + "&mode=d" , '_system');
             this.close()
         }else{
