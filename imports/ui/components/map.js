@@ -203,13 +203,15 @@ export class MapView extends Component {
         }
     }
 
-    /*shouldComponentUpdate(nextProps, nextState) {
+    shouldComponentUpdate(nextProps, nextState) {
         return nextState.isEditMode !== this.state.isEditMode
         || nextState.currentPos !== this.state.currentPos
+        || nextState.poi !== this.state.poi
         || nextState.markerModal !== this.state.markerModal
         || nextState.newLensModal !== this.state.newLensModal
-        || nextState.newPointsModal !== this.state.newPointsModal;
-    }*/
+        || nextState.newPointsModal !== this.state.newPointsModal
+        || nextProps !== this.props;
+    }
 }
 
 export default GoogleApiWrapper({
