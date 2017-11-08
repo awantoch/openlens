@@ -29,7 +29,7 @@ class Camera extends Component {
 
         return (
             <div>
-                <Modal isOpen={this.state.markerModal} onClose={() => this.closeModal()}>
+                <Modal isOpen={this.state.markerModal} onClose={() => this.closeModal()} loc={this.state.poi.loc && this.state.poi.loc.coordinates}>
                     <h5 className="header">{this.state.poi.data && this.state.poi.data.name}</h5>
                     <p>{this.state.poi.data && this.state.poi.data.text}</p>
                 </Modal>
