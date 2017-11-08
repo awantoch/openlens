@@ -21,7 +21,7 @@ class Modal extends Component {
             window.open("google.navigation:q=" + this.props.loc[1]+","+this.props.loc[0] + "&mode=d" , '_system');
             this.close()
         }else{
-            window.open("google.navigation:q=" + this.props.loc[1]+","+this.props.loc[0] + "&mode=d" , '_system');
+            window.open("http://maps.google.com/?q="+ this.props.loc[1]+","+this.props.loc[0] , '_blank');
             this.close()
         }
     }
