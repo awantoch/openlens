@@ -142,7 +142,8 @@ class Camera extends Component {
     shouldComponentUpdate(nextProps, nextState) {
         return nextState.markerModal !== this.state.markerModal
         || nextState.newLensModal !== this.state.newLensModal
-        || nextState.newPointsModal !== this.state.newPointsModal;
+        || nextState.newPointsModal !== this.state.newPointsModal
+        || !_.isEqual(nextProps, this.props);
     }
 
 }
