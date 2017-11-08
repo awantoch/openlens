@@ -18,6 +18,7 @@ class Modal extends Component {
         let isAndroid = ua.indexOf("android") > -1;
         if(isAndroid) {
             alert("Android Gps");
+            window.open("geo:"+this.props.loc[1]+","+this.props.loc[0]);
             close()
         }else{
             close()
