@@ -7,7 +7,7 @@ Meteor.methods({
 
     'lens.create'(name){
         let id = Random.id();
-            Lenses.insert({_id: id, name: name, points: {}, owner: Meteor.userId(), members:{}});
+            Lenses.insert({_id: id, name: name, owner: Meteor.userId(), members:{}});
         return id;
     },
 
@@ -26,7 +26,7 @@ Meteor.methods({
     'fetchCrashData'(){
         HTTP.get('https://data.pa.gov/resource/gbsa-2v4n.json', {params: {'$limit': 5000}}, (err, response) => {
             response.data.forEach(function(obj, index, arr){
-                try{ if (obj.location_1) Points.insert({_id: obj.crn, lensId: 'Collisions', loc: obj.location_1, data: {name: obj.collision_type, text: 'Fatalities: ' + obj.fatal_count}}); } catch(e){}
+                try{ if (obj.location_1) Points.insert({_id: obj.crn, lensId: 'collisions', loc: obj.location_1, data: {name: obj.collision_type, text: 'Fatalities: ' + obj.fatal_count}}); } catch(e){}
             });
         });
     },
@@ -35,7 +35,7 @@ Meteor.methods({
     'fetchHistoricLandmarks'(){
         HTTP.get('https://data.pa.gov/resource/ug4h-nsj9.json', {params: {'$limit': 5000}}, (err, response) => {
             response.data.forEach(function(obj, index, arr){
-                try{ if (obj.location_1) Points.insert({_id: obj.historicalmarkerid, lensId: 'Historic Landmarks', loc: obj.location_1, data: {name: obj.name, text: obj.markertext}}); } catch(e){}
+                try{ if (obj.location_1) Points.insert({_id: obj.historicalmarkerid, lensId: 'historical', loc: obj.location_1, data: {name: obj.name, text: obj.markertext}}); } catch(e){}
             });
         });
     }

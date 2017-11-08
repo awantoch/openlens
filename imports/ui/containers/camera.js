@@ -4,15 +4,9 @@ import Camera from '../components/camera.js';
 import {Points} from '/lib/collections';
 
 const composer = (props, onData) => {
-    if (Meteor.subscribe('points').ready()) {
-        const pois = Points.find({'lensId': Session.get('navLens') || 'historical', loc: { $near: {
-                                           $geometry: {
-                                              type: "Point" ,
-                                              coordinates: [ Session.get('currentLocation')[0] , Session.get('currentLocation')[1] ]
-                                           },
-                                           $maxDistance: 1000
-                                         }
-                                       }}, {limit: 75}).fetch();
+    if (Meteor.subscribe('points', Session.get('currentLocation')).ready()) {
+        const pois = Points.find({'lensId': Session.get('navLens') || 'historical'}).fetch();
+        console.log(pois, Session.get('navLens'))
         onData(null, {pois});
     }
 };

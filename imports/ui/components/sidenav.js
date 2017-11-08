@@ -7,7 +7,7 @@ class SideNav extends Component {
 		super(props);
 	}
 
-	switchLense(lenseId) {
+	switchLense(lensId) {
 		Session.set('navLens', lensId);
 	}
 
@@ -27,6 +27,13 @@ class SideNav extends Component {
 				<li className="hide-toggle">{Meteor.user() ? <Link to="/logout">Logout</Link> : <Link to="/login">Login/Register</Link>}</li>
 			</ul>
 		)
+	}
+
+	componentDidMount(){
+        $('#menuToggle').sideNav({
+            menuWidth: 200,
+            closeOnClick: true,
+		});
 	}
 }
 

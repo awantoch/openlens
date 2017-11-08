@@ -196,6 +196,7 @@ export class MapView extends Component {
         }
 
     }
+    
     componentWillMount(){
         if(Session.get('currentLens')){
             this.setState({currentLens: Session.get('currentLens')});
