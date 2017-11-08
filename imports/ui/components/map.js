@@ -209,7 +209,8 @@ export class MapView extends Component {
         || nextState.poi !== this.state.poi
         || nextState.markerModal !== this.state.markerModal
         || nextState.newLensModal !== this.state.newLensModal
-        || nextState.newPointsModal !== this.state.newPointsModal;
+        || nextState.newPointsModal !== this.state.newPointsModal
+        || !_.isEqual(nextProps, this.props);
     }
 }
 
