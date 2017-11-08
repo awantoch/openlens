@@ -143,11 +143,11 @@ class Camera extends Component {
         delete AFRAME.components['cursor-listener'];
     }
 
-    componendDidUpdate() {
+    componentDidUpdate() {
         delete AFRAME.components['cursor-listener'];
         this.attachCursorEvents();
     }
-    
+
     shouldComponentUpdate(nextProps, nextState) {
         return !_.isEqual(nextState, this.state)
         || !_.isEqual(nextProps, this.props);
