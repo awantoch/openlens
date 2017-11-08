@@ -10,6 +10,14 @@ class Modal extends Component {
         }
     }
 
+    renderNavIcon(){
+        if (this.props.loc) {
+            return (
+                <a href={"https://www.google.com/maps/?q="+this.props.loc[1]+","+this.props.loc[0]}><i className="btn-flat blue lighten-2 fa fa-2x fa-location-arrow" aria-hidden="true"></i></a>
+            )
+        }
+    }
+
     render() {
         if (this.props.isOpen === false) {
             return null;
@@ -20,8 +28,8 @@ class Modal extends Component {
                         {this.props.children}
                     </div>
                     <div className="modal-footer">
-                        <a href={"https://www.google.com/maps/?q="+this.props.loc[1]+","+this.props.loc[0]}><i className="btn-flat blue lighten-2 fa fa-2x fa-location-arrow" aria-hidden="true"></i></a>
-                        <a onClick={e => this.close(e)} className="modal-action modal-close waves-effect waves-green btn-flat">Close</a>
+                        {this.renderNavIcon()}
+                        <a onClick={e => this.close(e)} className="modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
                     </div>
                 </div>
             )
