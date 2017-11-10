@@ -45,7 +45,7 @@ export class MapView extends Component {
     submitNewPoint(){
         var session = Session.get('currentLens');
         console.log(session);
-        Meteor.call('lens.addPoint', session.id, {name: session.name}, this.state.currentPos[1], this.state.currentPos[0])
+        Meteor.call('lens.addPoint', session.id, {name: $('#newPoint').val() }, this.state.currentPos[1], this.state.currentPos[0])
     }
 
     addPoint(){
