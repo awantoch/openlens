@@ -119,7 +119,7 @@ export class MapView extends Component {
             return (
                 <div>
                     <div id="toggleEditor" onClick={this.toggleEditor.bind(this)}><i className="fa fa-globe" aria-hidden="true"/></div>
-                    <Modal isOpen={this.state.markerModal} onClose={() => this.closeModal("markerModal")} loc={this.state.poi.loc && this.state.poi.loc.coordinates}>
+                    <Modal comment={true} isOpen={this.state.markerModal} onClose={() => this.closeModal("markerModal")} loc={this.state.poi.loc && this.state.poi.loc.coordinates}>
                         <h5>{this.state.poi.data && this.state.poi.data.name}</h5>
                         <p>{this.state.poi.data && this.state.poi.data.text}</p>
                     </Modal>

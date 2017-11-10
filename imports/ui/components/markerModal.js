@@ -25,10 +25,35 @@ class Modal extends Component {
         }
     }
 
+    openNewComment(){
+        console.log('clicked');
+        $('#newCommentBtn').hide();
+        $('#submitCommentBtn').show();
+        $('.new-comment').slideToggle();
+    }
+
+    submitComment(){
+        $('#newCommentBtn').show();
+        $('#submitCommentBtn').hide();
+        $('.new-comment').slideToggle();
+    }
+
     renderNavIcon(){
         if (this.props.loc) {
             return (
                 <a onClick={this.launchNav.bind(this)}><i className="modal-action modal-close btn-flat blue lighten-2 fa fa-2x fa-location-arrow" aria-hidden="true"/></a>
+            )
+        }
+    }
+
+    renderCommentBtn(){
+        if (this.props.comment === true){
+            return(
+                <div>
+                    <a id="newCommentBtn" onClick={this.openNewComment.bind(this)}><i className="btn-flat red lighten-2 fa fa-2x fa fa-comment-o" aria-hidden="true"/></a>
+                    <a id="submitCommentBtn" onClick={this.submitComment.bind(this)}><i className="btn-flat green lighten-2 fa fa-2x fa fa-comment-o inline-button" aria-hidden="true"/></a>
+                    <a onClick={e => this.close(e)} className="modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
+                </div>
             )
         }
     }
@@ -44,7 +69,14 @@ class Modal extends Component {
                     </div>
                     <div className="modal-footer">
                         {this.renderNavIcon()}
-                        <a onClick={e => this.close(e)} className="modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
+                        {this.renderCommentBtn()}
+                        <div className="new-comment">
+                            <div className="row">
+                                <div className="input-field col s12">
+                                    <input placeholder="Comment" id="first_name" type="text" className="validate"/>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             )
@@ -52,6 +84,7 @@ class Modal extends Component {
     }
 
     componentDidUpdate(){
+        $('.collapsible').collapsible();
         $('#MarkerModal').modal();
     }
 }
