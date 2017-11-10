@@ -46,21 +46,20 @@ class Camera extends Component {
     }
 
     markerToggle(){
-        this.setState({markerMode: !this.markerMode})
+        console.log('markermode', this.state.markerMode)
+        this.setState({markerMode: !this.state.markerMode})
     }
 
     render(){
 
         const {pois} = this.props;
 
-
-
         if (!this.state.markerMode){
 
             return (
                 <div>
                     <div onClick={this.markerToggle.bind(this)} id="markerToggle"><i className="fa fa-qrcode" aria-hidden="true"/></div>
-                    <Modal comment={true} isOpen={this.state.markerModal} onClose={() => this.closeModal()} loc={this.state.poi.loc && this.state.poi.loc.coordinates}>
+                    <Modal comment="true" isOpen={this.state.markerModal} onClose={() => this.closeModal()} loc={this.state.poi.loc && this.state.poi.loc.coordinates}>
                         <h5 className="header">{this.state.poi.data && this.state.poi.data.name}</h5>
                         <p>{this.state.poi.data && this.state.poi.data.text}</p>
                     </Modal>
@@ -98,6 +97,7 @@ class Camera extends Component {
         }else{
             return(
                 <div>
+                    <div onClick={this.markerToggle.bind(this)} id="markerToggle"><i className="fa fa-qrcode" aria-hidden="true"/></div>
                     <a-scene embedded arjs='trackingMethod: best;'>
                         <a-anchor hit-testing-enabled='true'>
                             <a-portal-door url='https://cdn.aframe.io/360-image-gallery-boilerplate/img/city.jpg' position='0 0 0' scale='0.7 1 0.7' rotation='0 90 0'/>
@@ -105,7 +105,7 @@ class Camera extends Component {
                         <a-camera-static/>
                     </a-scene>
                 </div>
-            )
+            );
         }
 
     }

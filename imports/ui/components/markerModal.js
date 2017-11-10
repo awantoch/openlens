@@ -47,13 +47,13 @@ class Modal extends Component {
     }
 
     renderCommentBtn(){
-        if (this.props.comment === true){
+        if (this.props.comment){
             return(
-                <div>
+                <span>
                     <a id="newCommentBtn" onClick={this.openNewComment.bind(this)}><i className="btn-flat red lighten-2 fa fa-2x fa fa-comment-o" aria-hidden="true"/></a>
                     <a id="submitCommentBtn" onClick={this.submitComment.bind(this)}><i className="btn-flat green lighten-2 fa fa-2x fa fa-comment-o inline-button" aria-hidden="true"/></a>
                     <a onClick={e => this.close(e)} className="modal-action modal-close waves-effect waves-blue btn-flat">Close</a>
-                </div>
+                </span>
             )
         }
     }
