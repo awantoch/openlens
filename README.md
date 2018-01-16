@@ -1,6 +1,6 @@
 # OpenLens Augmented Reality
 
-**OpenLens** is an augmented reality platform built for the web, using AR.js, Three.js, a-frame, and React that enables geo-objects, as well as marker based AR for any data -- text, pictures, audio, 360 video portals, you name it. 
+[**OpenLens**](http://openlens.world) is an augmented reality platform built for the web, using AR.js, Three.js, a-frame, and React that enables geo-objects, as well as marker based AR for any data -- text, pictures, audio, 360 video portals, you name it. 
 
 The idea is to create an open platform to render data from people, events, and local business into an interactive world where you can share your experiences and create new memories in ways yet to be imagined!
 
